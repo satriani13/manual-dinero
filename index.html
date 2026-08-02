@@ -1,0 +1,1087 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Curso paso a paso de finanzas personales desde cero para adolescentes: qué es el dinero, inflación, banco y deuda, impuestos, interés compuesto e inversión, con ejemplos numéricos y pruebas de comprensión.">
+<meta name="color-scheme" content="light dark">
+<title>El Manual del Dinero · Finanzas personales desde cero</title>
+<style>
+  html, body { margin: 0; padding: 0; }
+  img { max-width: 100%; }
+  :root {
+    --font-display: Georgia, "Iowan Old Style", "Times New Roman", serif;
+    --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+    --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+    --bg: #ECEEE4;
+    --surface: #F6F7F0;
+    --surface-2: #E3E6D8;
+    --ink: #16241D;
+    --ink-soft: #4A594F;
+    --line: #D2D7C6;
+    --gold: #B67A1E;
+    --gold-strong: #9A6511;
+    --teal: #2C7A6F;
+    --rust: #B0472C;
+    --plum: #6B4E8C;
+    --ok: #2C7A4F;
+    --shadow: 0 1px 2px rgba(22,36,29,.06), 0 8px 24px rgba(22,36,29,.07);
+    --maxw: 720px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #101A16; --surface: #17241E; --surface-2: #1E2E27; --ink: #E9EDE3;
+      --ink-soft: #9EAAA0; --line: #2A3A32; --gold: #E0A94A; --gold-strong: #EEBB63;
+      --teal: #4FB3A5; --rust: #E0724F; --plum: #A487C9; --ok: #5FB884;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 10px 30px rgba(0,0,0,.35);
+    }
+  }
+  :root[data-theme="light"] {
+    --bg: #ECEEE4; --surface: #F6F7F0; --surface-2: #E3E6D8; --ink: #16241D;
+    --ink-soft: #4A594F; --line: #D2D7C6; --gold: #B67A1E; --gold-strong: #9A6511;
+    --teal: #2C7A6F; --rust: #B0472C; --plum: #6B4E8C; --ok: #2C7A4F;
+    --shadow: 0 1px 2px rgba(22,36,29,.06), 0 8px 24px rgba(22,36,29,.07);
+  }
+  :root[data-theme="dark"] {
+    --bg: #101A16; --surface: #17241E; --surface-2: #1E2E27; --ink: #E9EDE3;
+    --ink-soft: #9EAAA0; --line: #2A3A32; --gold: #E0A94A; --gold-strong: #EEBB63;
+    --teal: #4FB3A5; --rust: #E0724F; --plum: #A487C9; --ok: #5FB884;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 10px 30px rgba(0,0,0,.35);
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font-family: var(--font-sans); line-height: 1.65; font-size: 17px; -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 22px; }
+  h1, h2, h3 { font-family: var(--font-display); font-weight: 700; text-wrap: balance; line-height: 1.14; }
+  p { max-width: 66ch; }
+  a { color: var(--teal); }
+  .eyebrow { font-family: var(--font-mono); font-size: .72rem; letter-spacing: .18em; text-transform: uppercase; color: var(--gold-strong); font-weight: 600; }
+  .num { font-variant-numeric: tabular-nums; font-family: var(--font-mono); }
+
+  /* topbar */
+  .topbar { position: sticky; top: 0; z-index: 40; background: color-mix(in srgb, var(--bg) 86%, transparent); backdrop-filter: saturate(140%) blur(8px); border-bottom: 1px solid var(--line); }
+  .topbar-inner { display: flex; align-items: center; gap: 14px; height: 52px; }
+  .brand { font-family: var(--font-display); font-weight: 700; font-size: 1.02rem; margin-right: auto; letter-spacing: .01em; }
+  .brand span { color: var(--gold-strong); }
+  .progress { position: absolute; left: 0; bottom: -1px; height: 2px; background: var(--gold); width: 0%; }
+  .tbtn { border: 1px solid var(--line); background: var(--surface); color: var(--ink-soft); font-family: var(--font-mono); font-size: .72rem; letter-spacing: .05em; padding: 6px 11px; border-radius: 999px; cursor: pointer; }
+  .tbtn:hover { color: var(--ink); border-color: var(--gold); }
+  .tbtn:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+
+  /* hero */
+  .hero { padding: 70px 0 40px; border-bottom: 1px solid var(--line); position: relative; overflow: hidden; }
+  .hero .kicker { margin-bottom: 20px; }
+  .hero h1 { font-size: clamp(2.4rem, 7.5vw, 4.2rem); margin: 0 0 18px; letter-spacing: -.01em; }
+  .hero h1 em { font-style: italic; color: var(--gold-strong); }
+  .hero .lede { font-size: 1.2rem; color: var(--ink-soft); max-width: 55ch; }
+  #snow { position: absolute; inset: 0; width: 100%; height: 100%; z-index: -1; opacity: .5; }
+
+  /* learning path index */
+  .path { margin: 34px 0 0; }
+  .path h3 { font-size: 1.05rem; margin: 0 0 14px; }
+  .path-mod { font-family: var(--font-mono); font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; color: var(--teal); margin: 18px 0 8px; }
+  .path ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+  .path li a { display: flex; gap: 12px; align-items: baseline; text-decoration: none; color: var(--ink); padding: 7px 0; border-bottom: 1px dashed var(--line); }
+  .path li a:hover { color: var(--gold-strong); }
+  .path li .pn { font-family: var(--font-mono); font-size: .8rem; color: var(--gold-strong); flex: none; width: 24px; }
+
+  /* module divider */
+  .module { padding: 46px 0 6px; }
+  .module .wrap { text-align: center; }
+  .module .m-eye { font-family: var(--font-mono); font-size: .72rem; letter-spacing: .2em; text-transform: uppercase; color: var(--teal); }
+  .module h2 { font-size: clamp(1.6rem, 5vw, 2.2rem); margin: 10px 0 6px; }
+  .module p { color: var(--ink-soft); margin: 0 auto; }
+  .module .m-line { width: 46px; height: 3px; background: var(--gold); border-radius: 2px; margin: 18px auto 0; }
+
+  /* chapter */
+  .chapter { padding: 46px 0 54px; border-bottom: 1px solid var(--line); }
+  .chapter-head { display: flex; align-items: center; gap: 14px; margin-bottom: 8px; }
+  .chapter-no { font-family: var(--font-mono); font-size: .9rem; color: var(--gold-strong); border: 1px solid var(--gold); border-radius: 8px; padding: 2px 9px; flex: none; }
+  .chapter h2 { font-size: clamp(1.55rem, 4.4vw, 2.3rem); margin: 6px 0 10px; }
+  .chapter .sub { color: var(--ink-soft); font-size: 1.06rem; margin-top: 0; }
+  .chapter p + p { margin-top: 1em; }
+  .lead-cap::first-letter { font-family: var(--font-display); font-size: 3.1em; float: left; line-height: .8; padding: 6px 10px 0 0; color: var(--gold-strong); font-weight: 700; }
+
+  ul.clean { list-style: none; padding: 0; margin: 18px 0; display: grid; gap: 10px; }
+  ul.clean li { padding-left: 26px; position: relative; }
+  ul.clean li::before { content: "→"; position: absolute; left: 0; top: 0; color: var(--gold-strong); font-weight: 700; }
+
+  /* concept definition box */
+  .concept { background: var(--surface); border: 1px solid var(--line); border-left: 3px solid var(--teal); border-radius: 0 12px 12px 0; padding: 14px 18px; margin: 24px 0; }
+  .concept .c-word { font-family: var(--font-mono); font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: var(--teal); }
+  .concept b { font-family: var(--font-display); }
+  .concept p { margin: 4px 0 0; font-size: .96rem; }
+
+  /* numeric example */
+  .example { background: var(--surface-2); border-radius: 14px; padding: 18px 20px; margin: 24px 0; }
+  .example .e-tag { font-family: var(--font-mono); font-size: .7rem; letter-spacing: .1em; text-transform: uppercase; color: var(--gold-strong); display: inline-flex; align-items: center; gap: 8px; }
+  .example .e-tag::before { content: "🧮"; }
+  .example h4 { margin: 8px 0 6px; font-family: var(--font-display); font-size: 1.1rem; }
+  .example table { width: 100%; border-collapse: collapse; margin-top: 10px; font-family: var(--font-mono); font-size: .9rem; }
+  .example td { padding: 6px 0; border-bottom: 1px dashed var(--line); }
+  .example td:last-child { text-align: right; font-variant-numeric: tabular-nums; }
+  .example tr:last-child td { border-bottom: 0; font-weight: 700; color: var(--gold-strong); }
+  .example .e-note { font-size: .88rem; color: var(--ink-soft); margin: 10px 0 0; }
+
+  /* callout / note */
+  .note { border-left: 3px solid var(--gold); background: var(--surface); padding: 16px 18px; border-radius: 0 10px 10px 0; margin: 26px 0; box-shadow: var(--shadow); }
+  .note .who { font-family: var(--font-mono); font-size: .74rem; letter-spacing: .04em; color: var(--gold-strong); text-transform: uppercase; }
+  .note p { margin: 6px 0 0; font-family: var(--font-display); font-size: 1.12rem; font-style: italic; }
+  .callout { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 20px 22px; margin: 26px 0; box-shadow: var(--shadow); }
+  .callout h4 { margin: 0 0 6px; font-family: var(--font-display); font-size: 1.15rem; }
+  .callout.warn { border-color: color-mix(in srgb, var(--rust) 40%, var(--line)); }
+  .callout.warn h4 { color: var(--rust); }
+
+  /* quiz */
+  .quiz { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 22px; margin: 30px 0; box-shadow: var(--shadow); }
+  .quiz .q-tag { font-family: var(--font-mono); font-size: .7rem; letter-spacing: .14em; text-transform: uppercase; color: var(--plum); display: inline-flex; align-items: center; gap: 8px; }
+  .quiz .q-tag::before { content: "✓"; display: grid; place-items: center; width: 17px; height: 17px; border-radius: 50%; background: var(--plum); color: #fff; font-size: .66rem; }
+  .quiz .q { font-family: var(--font-display); font-size: 1.16rem; font-weight: 700; margin: 10px 0 16px; }
+  .quiz .opts { display: grid; gap: 9px; }
+  .quiz .opt { text-align: left; font: inherit; font-size: .98rem; color: var(--ink); background: var(--surface-2); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; cursor: pointer; transition: border-color .15s, background .15s; }
+  .quiz .opt:hover { border-color: var(--gold); }
+  .quiz .opt:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+  .quiz .opt.correct { border-color: var(--ok); background: color-mix(in srgb, var(--ok) 14%, var(--surface)); color: var(--ink); font-weight: 600; }
+  .quiz .opt.wrong { border-color: var(--rust); background: color-mix(in srgb, var(--rust) 12%, var(--surface)); }
+  .quiz .opt[disabled] { cursor: default; }
+  .quiz .fb { margin-top: 14px; font-size: .95rem; padding: 12px 14px; border-radius: 10px; display: none; }
+  .quiz .fb.show { display: block; }
+  .quiz .fb.ok { background: color-mix(in srgb, var(--ok) 14%, var(--surface)); border: 1px solid color-mix(in srgb, var(--ok) 40%, var(--line)); }
+  .quiz .fb.no { background: color-mix(in srgb, var(--rust) 10%, var(--surface)); border: 1px solid color-mix(in srgb, var(--rust) 35%, var(--line)); }
+  .quiz .fb b { font-family: var(--font-display); }
+
+  /* interactive lab */
+  .lab { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 26px 24px; margin: 30px 0; box-shadow: var(--shadow); }
+  .lab-label { font-family: var(--font-mono); font-size: .7rem; letter-spacing: .16em; text-transform: uppercase; color: var(--teal); display: inline-flex; align-items: center; gap: 8px; margin-bottom: 14px; }
+  .lab-label::before { content: ""; width: 22px; height: 1px; background: var(--teal); display: inline-block; }
+  .lab h3 { margin: 0 0 4px; font-size: 1.35rem; }
+  .ctrl { display: grid; gap: 4px; margin: 16px 0; }
+  .ctrl-top { display: flex; justify-content: space-between; align-items: baseline; }
+  .ctrl label { font-size: .92rem; color: var(--ink-soft); }
+  .ctrl output { font-family: var(--font-mono); font-weight: 600; color: var(--ink); }
+  input[type=range] { -webkit-appearance: none; appearance: none; width: 100%; height: 6px; border-radius: 999px; background: var(--surface-2); outline: none; margin: 6px 0; }
+  input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 20px; height: 20px; border-radius: 50%; background: var(--gold); border: 3px solid var(--surface); box-shadow: var(--shadow); cursor: pointer; }
+  input[type=range]::-moz-range-thumb { width: 20px; height: 20px; border-radius: 50%; background: var(--gold); border: 3px solid var(--surface); cursor: pointer; }
+  input[type=range]:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; }
+  .stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 20px; }
+  .stat { background: var(--surface-2); border-radius: 12px; padding: 14px; }
+  .stat .k { font-family: var(--font-mono); font-size: .68rem; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-soft); }
+  .stat .v { font-family: var(--font-mono); font-size: 1.5rem; font-weight: 700; margin-top: 4px; letter-spacing: -.02em; }
+  .stat.hero-stat .v { color: var(--gold-strong); }
+  .stat.tealv .v { color: var(--teal); }
+  canvas { display: block; width: 100%; height: auto; border-radius: 10px; }
+  .legend { display: flex; gap: 18px; flex-wrap: wrap; font-size: .85rem; color: var(--ink-soft); margin-top: 12px; }
+  .legend span { display: inline-flex; align-items: center; gap: 7px; }
+  .swatch { width: 12px; height: 12px; border-radius: 3px; display: inline-block; }
+
+  .budget-bar { display: flex; height: 46px; border-radius: 10px; overflow: hidden; margin: 18px 0 6px; border: 1px solid var(--line); }
+  .budget-bar > div { display: flex; align-items: center; justify-content: center; color: #fff; font-family: var(--font-mono); font-size: .82rem; font-weight: 600; }
+  .seg-need { background: var(--teal); } .seg-want { background: var(--gold); } .seg-save { background: var(--plum); }
+  .budget-keys { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-top: 12px; }
+  .budget-keys div { font-size: .82rem; color: var(--ink-soft); }
+  .budget-keys b { color: var(--ink); font-family: var(--font-mono); }
+
+  .inflation-out { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; margin-top: 18px; }
+  .coin { font-family: var(--font-display); font-weight: 700; text-align: center; line-height: 1; border-radius: 50%; display: grid; place-items: center; flex: none; background: radial-gradient(circle at 35% 30%, var(--gold-strong), var(--gold)); color: #fff; box-shadow: var(--shadow); }
+  .coin.now { width: 120px; height: 120px; font-size: 1.7rem; }
+  .coin.future { width: 120px; height: 120px; font-size: 1.7rem; opacity: .55; filter: saturate(.6); }
+  .infl-arrow { font-family: var(--font-mono); color: var(--rust); font-size: .8rem; text-align: center; }
+
+  .taxviz { display: grid; gap: 8px; margin: 20px 0; }
+  .taxrow { display: grid; grid-template-columns: 130px 1fr 58px; align-items: center; gap: 12px; font-size: .86rem; }
+  .taxrow .tl { color: var(--ink-soft); font-family: var(--font-mono); font-size: .78rem; }
+  .taxrow .tbar { height: 22px; border-radius: 6px; background: var(--surface-2); overflow: hidden; }
+  .taxrow .tbar i { display: block; height: 100%; background: var(--teal); }
+  .taxrow .tv { font-family: var(--font-mono); text-align: right; }
+
+  .assets { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; margin: 26px 0; }
+  .asset { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 20px; box-shadow: var(--shadow); border-top: 4px solid var(--acc, var(--gold)); }
+  .asset h4 { margin: 0 0 2px; font-family: var(--font-display); font-size: 1.2rem; }
+  .asset .role { font-family: var(--font-mono); font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-soft); }
+  .asset p { font-size: .93rem; color: var(--ink-soft); margin: 12px 0; }
+  .meter { display: grid; gap: 8px; margin-top: 12px; font-size: .78rem; }
+  .meter .m { display: grid; grid-template-columns: 74px 1fr; align-items: center; gap: 10px; color: var(--ink-soft); }
+  .bar { height: 7px; border-radius: 999px; background: var(--surface-2); overflow: hidden; }
+  .bar i { display: block; height: 100%; border-radius: 999px; background: var(--acc, var(--gold)); }
+
+  .rules { counter-reset: r; display: grid; gap: 2px; margin: 26px 0; }
+  .rule { display: grid; grid-template-columns: 46px 1fr; gap: 14px; padding: 16px 0; border-top: 1px solid var(--line); align-items: baseline; }
+  .rule::before { counter-increment: r; content: counter(r,decimal-leading-zero); font-family: var(--font-mono); color: var(--gold-strong); font-size: .95rem; }
+  .rule b { font-family: var(--font-display); font-size: 1.12rem; }
+  .rule p { margin: 4px 0 0; color: var(--ink-soft); font-size: .96rem; }
+
+  .people { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px,1fr)); gap: 14px; margin: 24px 0; }
+  .person { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 16px 18px; }
+  .person b { display: block; font-family: var(--font-display); font-size: 1.05rem; }
+  .person .work { color: var(--gold-strong); font-size: .82rem; font-family: var(--font-mono); }
+  .person p { font-size: .9rem; color: var(--ink-soft); margin: 8px 0 0; }
+
+  footer { padding: 50px 0 70px; }
+  .disclaimer { font-size: .86rem; color: var(--ink-soft); border: 1px dashed var(--line); border-radius: 12px; padding: 18px 20px; }
+
+  @media (max-width: 560px) {
+    body { font-size: 16px; }
+    .stat-row { grid-template-columns: 1fr; }
+    .taxrow { grid-template-columns: 92px 1fr 52px; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; scroll-behavior: auto !important; } }
+  html { scroll-behavior: smooth; }
+</style>
+
+<div class="topbar">
+  <div class="wrap topbar-inner">
+    <div class="brand">El Manual del <span>Dinero</span></div>
+    <button class="tbtn" id="themeBtn" aria-label="Cambiar tema">Modo oscuro</button>
+    <div class="progress" id="progress"></div>
+  </div>
+</div>
+
+<header class="hero">
+  <canvas id="snow" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <div class="eyebrow kicker">Curso paso a paso · Desde cero · Sin conocimientos previos</div>
+    <h1>Aprende cómo funciona el <em>dinero</em>, de principio a fin.</h1>
+    <p class="lede">Empezamos por lo más básico —qué es el dinero y por qué existe— y subimos escalón a escalón hasta saber invertir. Cada capítulo trae ejemplos con números y una pequeña prueba para comprobar que lo has entendido. No hace falta saber nada de antes.</p>
+
+    <nav class="path" aria-label="Índice del curso">
+      <h3>Tu ruta de aprendizaje</h3>
+
+      <div class="path-mod">Módulo A · Entender el dinero</div>
+      <ol>
+        <li><a href="#cap1"><span class="pn">01</span><span>Qué es el dinero y por qué existe</span></a></li>
+        <li><a href="#cap2"><span class="pn">02</span><span>Ingresos y gastos: la regla que lo aguanta todo</span></a></li>
+        <li><a href="#cap3"><span class="pn">03</span><span>La inflación: por qué el dinero parado se encoge</span></a></li>
+      </ol>
+
+      <div class="path-mod">Módulo B · Gestionar el dinero</div>
+      <ol>
+        <li><a href="#cap4"><span class="pn">04</span><span>El banco, la tarjeta y el peligro de la deuda</span></a></li>
+        <li><a href="#cap5"><span class="pn">05</span><span>Presupuesto 50/30/20 y el fondo de emergencia</span></a></li>
+        <li><a href="#cap6"><span class="pn">06</span><span>Los impuestos: bruto, neto, IVA e IRPF</span></a></li>
+      </ol>
+
+      <div class="path-mod">Módulo C · Hacer crecer el dinero</div>
+      <ol>
+        <li><a href="#cap7"><span class="pn">07</span><span>El interés: simple, compuesto y la bola de nieve</span></a></li>
+        <li><a href="#cap8"><span class="pn">08</span><span>Qué es invertir: riesgo, rentabilidad y diversificar</span></a></li>
+        <li><a href="#cap9"><span class="pn">09</span><span>Inversión activa vs pasiva y los fondos indexados</span></a></li>
+        <li><a href="#cap10"><span class="pn">10</span><span>El menú de inversiones: bolsa, inmobiliario, cripto</span></a></li>
+        <li><a href="#cap11"><span class="pn">11</span><span>Tu cabeza: el factor que más importa</span></a></li>
+      </ol>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<!-- ================= MÓDULO A ================= -->
+<div class="module"><div class="wrap">
+  <div class="m-eye">Módulo A</div>
+  <h2>Entender el dinero</h2>
+  <p>Antes de ganarlo o invertirlo, hay que saber qué es. Empezamos por el principio de todo.</p>
+  <div class="m-line"></div>
+</div></div>
+
+<!-- CAP 1 -->
+<section class="chapter" id="cap1">
+  <div class="wrap">
+    <div class="chapter-head"><span class="chapter-no">01</span><span class="eyebrow">El origen</span></div>
+    <h2>Qué es el dinero y por qué existe</h2>
+    <p class="sub">Suena obvio, pero casi nadie sabría explicarlo. Y todo lo demás se construye encima de esto.</p>
+
+    <p class="lead-cap">Imagina un mundo sin dinero. Tú tienes manzanas y quieres unos zapatos. Buscas a un zapatero… pero resulta que él no quiere manzanas, quiere pescado. Así que primero tienes que encontrar a alguien con pescado que quiera manzanas, cambiar, y luego volver al zapatero. Agotador, ¿verdad? Eso se llama <b>trueque</b>, y funcionaba fatal.</p>
+
+    <p>El dinero se inventó para resolver justo ese lío. Es un <b>intermediario</b> que todos aceptamos: tú vendes tus manzanas por dinero, y con ese dinero compras los zapatos. El zapatero ya no necesita querer manzanas. El dinero, en el fondo, es <b>confianza convertida en billetes</b>: vale porque todos confiamos en que los demás lo aceptarán.</p>
+
+    <div class="concept">
+      <span class="c-word">Concepto clave</span>
+      <p><b>Dinero:</b> una herramienta que cumple tres funciones. (1) Sirve para <b>intercambiar</b> cosas sin trueque. (2) Sirve para <b>medir</b> cuánto vale algo (un móvil "cuesta" 300 €). (3) Sirve para <b>guardar</b> tu esfuerzo de hoy y gastarlo mañana.</p>
+    </div>
+
+    <p>Ese billete de 20 € no vale por el papel: vale por lo que puedes cambiar con él. Y aquí está la primera idea importante de todo el curso: el dinero no es el objetivo, es una <b>herramienta</b> para conseguir cosas y tiempo. Aprender a usarlo bien es lo que marca la diferencia entre agobiarte con él toda la vida o que trabaje para ti.</p>
+
+    <div class="quiz" data-answer="1">
+      <span class="q-tag">Prueba de comprensión</span>
+      <p class="q">¿Cuál fue el principal problema del trueque que el dinero vino a resolver?</p>
+      <div class="opts">
+        <button class="opt">Que las manzanas se pudrían muy rápido.</button>
+        <button class="opt">Que costaba encontrar a alguien que quisiera lo que tú tenías y tuviera lo que tú querías.</button>
+        <button class="opt">Que no existían las tiendas todavía.</button>
+      </div>
+      <div class="fb" data-ok="Exacto. A eso se le llama 'la doble coincidencia de deseos', y era el gran cuello de botella. El dinero, al ser aceptado por todos, elimina ese problema." data-no="Piensa en el ejemplo de las manzanas y los zapatos: el lío no era que se pudrieran, sino encontrar a alguien que quisiera cambiar justo lo que tú tenías."></div>
+    </div>
+  </div>
+</section>
+
+<!-- CAP 2 -->
+<section class="chapter" id="cap2">
+  <div class="wrap">
+    <div class="chapter-head"><span class="chapter-no">02</span><span class="eyebrow">La base de todo</span></div>
+    <h2>Ingresos y gastos: la regla que lo aguanta todo</h2>
+    <p class="sub">Solo hay dos cosas que hacer con el dinero: que entre y que salga. Dominar esa resta es el 80 % del juego.</p>
+
+    <div class="concept">
+      <span class="c-word">Dos palabras que usaremos siempre</span>
+      <p><b>Ingreso:</b> dinero que <b>entra</b> (tu paga, un trabajillo, propinas, más adelante tu sueldo). <b>Gasto:</b> dinero que <b>sale</b> (lo que compras). Lo que queda al restar ingresos menos gastos es tu <b>ahorro</b>.</p>
+    </div>
+
+    <p>La regla de oro más importante del dinero cabe en una frase: <b>gasta menos de lo que ganas.</b> Suena tonta de tan simple, pero casi todos los problemas de dinero del mundo vienen de romperla. Si gastas más de lo que entra, entras en <b>deuda</b> (dinero que debes). Si gastas menos, te sobra, y ese "sobrante" es la semilla de todo lo demás.</p>
+
+    <div class="example">
+      <span class="e-tag">Ejemplo con números</span>
+      <h4>Dos personas, la misma paga</h4>
+      <table>
+        <tr><td>Marta ingresa al mes</td><td>200 €</td></tr>
+        <tr><td>Marta gasta al mes</td><td>190 €</td></tr>
+        <tr><td>Le sobra (ahorra)</td><td>+10 €</td></tr>
+      </table>
+      <table style="margin-top:14px">
+        <tr><td>Hugo ingresa al mes</td><td>200 €</td></tr>
+        <tr><td>Hugo gasta al mes</td><td>230 €</td></tr>
+        <tr><td>Le falta (se endeuda)</td><td>−30 €</td></tr>
+      </table>
+      <p class="e-note">Ganan lo mismo. La diferencia no es cuánto entra, sino la <b>decisión</b> sobre cuánto sale. Marta va sumando; Hugo va cavando un agujero. Con el tiempo, esa pequeña resta mensual lo cambia todo.</p>
+    </div>
+
+    <p>Fíjate en algo clave: Marta no ahorra mucho (solo 10 €), pero ahorra <b>algo, siempre</b>. Esa costumbre vale más que la cantidad. En el Módulo C verás cómo esos 10 € repetidos durante años se convierten en una cifra que te va a sorprender.</p>
+
+    <div class="quiz" data-answer="2">
+      <span class="q-tag">Prueba de comprensión</span>
+      <p class="q">Si tus ingresos son 150 € y tus gastos 180 €, ¿qué está pasando?</p>
+      <div class="opts">
+        <button class="opt">Estás ahorrando 30 € al mes.</button>
+        <button class="opt">Estás en equilibrio, ni ganas ni pierdes.</button>
+        <button class="opt">Te faltan 30 €: gastas más de lo que ganas y te estás endeudando.</button>
+      </div>
+      <div class="fb" data-ok="Correcto. 150 − 180 = −30. Ese número en negativo significa deuda. La primera regla del dinero (gastar menos de lo que ganas) no se está cumpliendo." data-no="Haz la resta: ingresos (150) menos gastos (180). Si el resultado es negativo, falta dinero y aparece la deuda."></div>
+    </div>
+  </div>
+</section>
+
+<!-- CAP 3 -->
+<section class="chapter" id="cap3">
+  <div class="wrap">
+    <div class="chapter-head"><span class="chapter-no">03</span><span class="eyebrow">El enemigo silencioso</span></div>
+    <h2>La inflación: por qué el dinero parado se encoge</h2>
+    <p class="sub">Ahorrar está bien, pero guardar el dinero quieto tiene una trampa que casi nadie te cuenta.</p>
+
+    <p>¿Te han dicho alguna vez "con lo que valía antes un helado…"? Eso es la inflación. Con el paso del tiempo, los precios <b>suben</b>, y por tanto con el mismo dinero compras <b>menos</b>. No es que te roben: es que tu dinero, quieto, pierde poder poco a poco.</p>
+
+    <div class="concept">
+      <span class="c-word">Concepto clave</span>
+      <p><b>Inflación:</b> la subida general de los precios con el tiempo. Si la inflación es del 3 % este año, lo que costaba 100 € pasa a costar 103 €. Tu billete de 100 € no ha cambiado, pero ahora compra un poco menos.</p>
+    </div>
+
+    <p>Es como un helado que dejas fuera del congelador: no desaparece de golpe, se derrite lento. Guardar dinero bajo el colchón durante años es exactamente eso. Prueba a moverlo tú:</p>
+
+    <div class="lab">
+      <span class="lab-label">Pruébalo</span>
+      <h3>La máquina del tiempo del dinero</h3>
+      <p style="color:var(--ink-soft); font-size:.95rem; margin-top:2px;">Mira qué le pasa a <b>100 €</b> guardados sin hacer nada según pasan los años.</p>
+      <div class="ctrl">
+        <div class="ctrl-top"><label for="inflYears">Años que pasan</label><output id="inflYearsOut">20 años</output></div>
+        <input type="range" id="inflYears" min="1" max="40" value="20" step="1">
+      </div>
+      <div class="ctrl">
+        <div class="ctrl-top"><label for="inflRate">Inflación media anual</label><output id="inflRateOut">3,0 %</output></div>
+        <input type="range" id="inflRate" min="0" max="8" value="3" step="0.5">
+      </div>
+      <div class="inflation-out">
+        <div class="coin now">100 €<br><span style="font-size:.7rem; font-weight:400;">hoy</span></div>
+        <div class="infl-arrow" id="inflArrow">— pierden poder de compra →</div>
+        <div class="coin future" id="inflCoin">55 €</div>
+      </div>
+      <p style="font-size:.9rem; color:var(--ink-soft); margin-top:16px;" id="inflMsg"></p>
+    </div>
+
+    <p>Por eso, más adelante, no nos bastará con ahorrar: querremos que el dinero <b>crezca al menos más rápido de lo que sube la inflación</b>. Ese es el motivo por el que existe la inversión, y llegaremos a ella en el Módulo C.</p>
+
+    <div class="quiz" data-answer="1">
+      <span class="q-tag">Prueba de comprensión</span>
+      <p class="q">Guardas 1.000 € en un cajón durante 10 años y hay inflación. ¿Qué pasa con ese dinero?</p>
+      <div class="opts">
+        <button class="opt">Sigues teniendo 1.000 € que compran exactamente lo mismo que hoy.</button>
+        <button class="opt">Sigues teniendo 1.000 €, pero compran menos cosas que hoy.</button>
+        <button class="opt">Tienes menos de 1.000 € porque el banco te los quita.</button>
+      </div>
+      <div class="fb" data-ok="Eso es. El número (1.000 €) no baja, pero su PODER DE COMPRA sí. Estar 'quieto' no es estar 'seguro': la inflación te va comiendo por dentro." data-no="El billete no desaparece ni te lo quita nadie: siguen siendo 1.000 €. Lo que cambia es cuántas cosas puedes comprar con ellos, porque los precios han subido."></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= MÓDULO B ================= -->
+<div class="module"><div class="wrap">
+  <div class="m-eye">Módulo B</div>
+  <h2>Gestionar el dinero</h2>
+  <p>Ya sabes qué es el dinero y qué lo amenaza. Ahora, cómo organizarlo en el día a día sin meterte en líos.</p>
+  <div class="m-line"></div>
+</div></div>
+
+<!-- CAP 4 -->
+<section class="chapter" id="cap4">
+  <div class="wrap">
+    <div class="chapter-head"><span class="chapter-no">04</span><span class="eyebrow">Herramientas del día a día</span></div>
+    <h2>El banco, la tarjeta y el peligro de la deuda</h2>
+    <p class="sub">Tres cosas que usarás toda la vida y que conviene entender antes de tocarlas.</p>
+
+    <p>Un <b>banco</b> es, básicamente, un sitio seguro donde guardar tu dinero y moverlo con facilidad. Cuando abres una <b>cuenta</b>, el dinero deja de estar en tu bolsillo y pasa a estar "en el banco", disponible con el móvil o con una tarjeta. Pero ojo, no todas las tarjetas son iguales:</p>
+
+    <ul class="clean">
+      <li><b>Tarjeta de débito:</b> gasta el dinero que <b>ya tienes</b> en la cuenta. Si tienes 50 €, puedes gastar 50 €. Ni un euro más. Es la segura.</li>
+      <li><b>Tarjeta de crédito:</b> el banco te <b>presta</b> el dinero y lo pagas después. Parece magia (compras sin tener), pero si no devuelves a tiempo, te cobran <b>intereses</b>… y ahí empieza el problema.</li>
+    </ul>
+
+    <div class="concept">
+      <span class="c-word">Concepto clave</span>
+      <p><b>Deuda:</b> dinero que debes a otro y tienes que devolver. <b>Interés:</b> lo que pagas de más por ese préstamo, casi siempre un porcentaje al año (por ejemplo, 20 % anual en muchas tarjetas de crédito). La deuda es dinero del futuro que ya te has gastado.</p>
+    </div>
+
+    <p>Aquí viene el aviso más importante de este capítulo. ¿Recuerdas el interés compuesto, esa "bola de nieve" mágica que hará crecer tus ahorros? Con la deuda, esa misma bola de nieve rueda <b>en tu contra</b>:</p>
+
+    <div class="example">
+      <span class="e-tag">Ejemplo con números</span>
+      <h4>La trampa de la tarjeta de crédito</h4>
+      <table>
+        <tr><td>Compras un móvil con la tarjeta de crédito</td><td>500 €</td></tr>
+        <tr><td>No lo pagas y el banco cobra un 20 % al año</td><td>+100 €</td></tr>
+        <tr><td>Al cabo de 1 año debes…</td><td>600 €</td></tr>
+        <tr><td>Si sigues sin pagar, al 2.º año (20 % de 600)…</td><td>720 €</td></tr>
+      </table>
+      <p class="e-note">La deuda crece sola, igual que crecerían tus ahorros, pero soplando en tu contra. Por eso la regla es: usa débito casi siempre, y si usas crédito, <b>paga el total cada mes</b> para que nunca te cobren intereses.</p>
+    </div>
+
+    <div class="callout warn">
+      <h4>Deuda buena vs deuda mala</h4>
+      <p style="margin:0; color:var(--ink-soft);">No toda deuda es terrible. Pedir prestado para <b>algo que te hace ganar más</b> o vale más con el tiempo (estudiar una carrera, comprar una casa) puede tener sentido. Endeudarte por <b>capricho que se gasta enseguida</b> (ropa, un móvil de última hora, unas vacaciones) casi siempre es mala idea. La pregunta clave: "¿esto me da algo a largo plazo, o solo un gusto de un momento?"</p>
+    </div>
+
+    <div class="quiz" data-answer="1">
+      <span class="q-tag">Prueba de comprensión</span>
+      <p class="q">¿Cuál es la diferencia principal entre una tarjeta de débito y una de crédito?</p>
+      <div class="opts">
+        <button class="opt">La de débito es del banco y la de crédito es tuya.</button>
+        <button class="opt">La de débito gasta dinero que ya tienes; la de crédito es un préstamo que devuelves después (con intereses si te retrasas).</button>
+        <button class="opt">Con la de crédito nunca pagas intereses.</button>
+      </div>
+      <div class="fb" data-ok="Perfecto. Débito = tu dinero real. Crédito = dinero prestado. La de crédito puede ser útil si la pagas entera cada mes, pero si arrastras la deuda, los intereses se te comen." data-no="La clave está en de quién es el dinero que gastas: en la de débito es TUYO (el que ya está en la cuenta); en la de crédito te lo PRESTA el banco y hay que devolverlo."></div>
+    </div>
+  </div>
+</section>
+
+<!-- CAP 5 -->
+<section class="chapter" id="cap5">
+  <div class="wrap">
+    <div class="chapter-head"><span class="chapter-no">05</span><span class="eyebrow">El plan</span></div>
+    <h2>Presupuesto 50/30/20 y el fondo de emergencia</h2>
+    <p class="sub">Un método sencillo para repartir cada euro que recibes, y una red de seguridad antes de nada.</p>
+
+    <p>Ya sabes que hay que gastar menos de lo que ganas. Pero ¿cuánto menos? Aquí va una fórmula famosa y fácil de recordar. De cada dinero que entra, repártelo así:</p>
+
+    <ul class="clean">
+      <li><b>50 % — Necesidades:</b> lo que no puedes evitar (transporte, comida, móvil; de mayor, alquiler y facturas).</li>
+      <li><b>30 % — Caprichos:</b> lo que hace la vida divertida (salir, ropa, videojuegos, suscripciones).</li>
+      <li><b>20 % — Tu yo del futuro:</b> ahorro e inversión. La parte que casi todos se saltan… y la que lo cambia todo.</li>
+    </ul>
+
+    <div class="lab">
+      <span class="lab-label">Pruébalo</span>
+      <h3>Reparte tu dinero</h3>
+      <p style="color:var(--ink-soft); font-size:.95rem; margin-top:2px;">¿Cuánto te entra al mes? (paga, trabajillo, propinas… lo que sea).</p>
+      <div class="ctrl">
+        <div class="ctrl-top"><label for="income">Dinero al mes</label><output id="incomeOut">200 €</output></div>
+        <input type="range" id="income" min="20" max="2000" value="200" step="10">
+      </div>
+      <div class="budget-bar">
+        <div class="seg-need" id="segNeed">50%</div>
+        <div class="seg-want" id="segWant">30%</div>
+        <div class="seg-save" id="segSave">20%</div>
+      </div>
+      <div class="budget-keys">
+        <div>Necesidades<br><b id="bNeed">100 €</b></div>
+        <div>Caprichos<br><b id="bWant">60 €</b></div>
+        <div>Ahorro/inversión<br><b id="bSave">40 €</b></div>
+      </div>
+      <p style="font-size:.9rem; color:var(--ink-soft); margin-top:16px;" id="budgetMsg"></p>
+    </div>
+
+    <div class="callout">
+      <h4>Antes de invertir: el fondo de emergencia</h4>
+      <p style="margin:0; color:var(--ink-soft);">Con ese 20 % que apartas, lo primero que se construye es un <b>colchón</b>: el equivalente a <b>3–6 meses de tus gastos</b>, guardado en una cuenta a la que puedas acceder al instante. Es tu red por si se rompe el móvil o (de mayor) te quedas sin trabajo. Invertir sin colchón es hacer puenting sin cuerda: si surge un imprevisto, tendrás que vender tus inversiones en el peor momento.</p>
+    </div>
+
+    <div class="note">
+      <span class="who">Idea de Ramit Sethi · "I Will Teach You To Be Rich"</span>
+      <p>Gasta a lo grande en lo que amas, y recorta sin piedad en lo que no te importa.</p>
+    </div>
+
+    <div class="quiz" data-answer="2">
+      <span class="q-tag">Prueba de comprensión</span>
+      <p class="q">Ganas 300 € al mes. Según la regla 50/30/20, ¿cuánto iría para tu yo del futuro (ahorro/inversión)?</p>
+      <div class="opts">
+        <button class="opt">150 €</button>
+        <button class="opt">90 €</button>
+        <button class="opt">60 €</button>
+      </div>
+      <div class="fb" data-ok="Correcto: el 20 % de 300 € son 60 €. (Las necesidades serían 150 € y los caprichos 90 €.) Ese 20 % es la semilla que luego pondrás a crecer." data-no="El 'yo del futuro' es el 20 %. Calcula el 20 % de 300 €: 300 × 0,20 = 60 €. El 50 % (150 €) y el 30 % (90 €) son las otras dos partes."></div>
+    </div>
+  </div>
+</section>
+
+<!-- CAP 6 -->
+<section class="chapter" id="cap6">
+  <div class="wrap">
+    <div class="chapter-head"><span class="chapter-no">06</span><span class="eyebrow">Lo que nadie te explica</span></div>
+    <h2>Los impuestos: bruto, neto, IVA e IRPF</h2>
+    <p class="sub">Cuando trabajes verás que lo que ganas y lo que te llega no es lo mismo. Vamos a ver por qué.</p>
+
+    <div class="concept">
+      <span class="c-word">Dos palabras que verás en tu primera nómina</span>
+      <p><b>Bruto:</b> lo que ganas en total, antes de quitar nada. <b>Neto:</b> lo que de verdad te llega a la cuenta, después de los impuestos. La diferencia entre bruto y neto son, sobre todo, los impuestos.</p>
+    </div>
+
+    <p>Los impuestos son la "cuota común" que pagamos entre todos para tener carreteras, hospitales, colegios, policía… No es dinero que se pierde: vuelve en forma de servicios. Los dos que más notarás:</p>
+
+    <ul class="clean">
+      <li><b>IVA:</b> ya va incluido en casi todo lo que compras (21 % general en España). Cuando pagas 12,10 € por unas zapatillas, unos 2,10 € son IVA que va al Estado.</li>
+      <li><b>IRPF:</b> el impuesto sobre lo que ganas trabajando. Es <b>progresivo</b>: cuanto más ganas, mayor porcentaje pagas… pero solo sobre la parte que supera cada tramo.</li>
+    </ul>
+
+    <div class="callout warn">
+      <h4>El malentendido más común de todos</h4>
+      <p style="margin:0; color:var(--ink-soft);">"Si subo de tramo, gano menos" es <b>FALSO</b>. Los tramos funcionan como cajones que se van llenando: el porcentaje alto solo se aplica al dinero que cae en el cajón alto, <b>no a todo tu sueldo</b>. Ganar más siempre deja más dinero en tu bolsillo.</p>
+    </div>
+
+    <p style="font-size:.95rem; color:var(--ink-soft);">Así se "trocea" un sueldo por tramos de IRPF (tipos estatales aproximados en España):</p>
+    <div class="taxviz">
+      <div class="taxrow"><span class="tl">0 – 12.450 €</span><span class="tbar"><i style="width:19%"></i></span><span class="tv">19 %</span></div>
+      <div class="taxrow"><span class="tl">12.450 – 20.200</span><span class="tbar"><i style="width:24%"></i></span><span class="tv">24 %</span></div>
+      <div class="taxrow"><span class="tl">20.200 – 35.200</span><span class="tbar"><i style="width:30%"></i></span><span class="tv">30 %</span></div>
+      <div class="taxrow"><span class="tl">35.200 – 60.000</span><span class="tbar"><i style="width:37%"></i></span><span class="tv">37 %</span></div>
+      <div class="taxrow"><span class="tl">Más de 60.000 €</span><span class="tbar"><i style="width:45%"></i></span><span class="tv">45 %</span></div>
+    </div>
+    <p style="font-size:.85rem; color:var(--ink-soft);">Son tramos orientativos; cada comunidad autónoma ajusta su parte. Lo importante es entender la <b>idea de los cajones</b>, no memorizar los números.</p>
+
+    <div class="quiz" data-answer="0">
+      <span class="q-tag">Prueba de comprensión</span>
+      <p class="q">Ganas un poco más y "subes de tramo" de IRPF. ¿Qué le pasa a tu dinero?</p>
+      <div class="opts">
+        <button class="opt">Sigo cobrando más neto: el porcentaje mayor solo se aplica a la parte que entra en el tramo alto.</button>
+        <button class="opt">Cobro menos que antes, porque ahora todo mi sueldo paga el porcentaje alto.</button>
+        <button class="opt">Da igual, todos pagan el mismo porcentaje sea cual sea el sueldo.</button>
+      </div>
+      <div class="fb" data-ok="¡Muy bien! Ese es justo el mito que hay que desmontar. Los tramos son cajones independientes: el tipo alto solo toca los euros del cajón alto, así que ganar más siempre compensa." data-no="Cuidado con el mito más famoso de los impuestos. El tipo alto NO se aplica a todo el sueldo, solo a la porción que cae en ese tramo. Por eso ganar más siempre deja más neto."></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= MÓDULO C ================= -->
+<div class="module"><div class="wrap">
+  <div class="m-eye">Módulo C</div>
+  <h2>Hacer crecer el dinero</h2>
+  <p>Ya sabes ganarlo, protegerlo de la inflación y organizarlo. Ahora, la parte que casi parece magia: multiplicarlo.</p>
+  <div class="m-line"></div>
+</div></div>
+
+<!-- CAP 7 -->
+<section class="chapter" id="cap7">
+  <div class="wrap">
+    <div class="chapter-head"><span class="chapter-no">07</span><span class="eyebrow">El superpoder</span></div>
+    <h2>El interés: simple, compuesto y la bola de nieve</h2>
+    <p class="sub">Si solo te llevas una idea de todo el curso, que sea esta. En serio.</p>
+
+    <div class="concept">
+      <span class="c-word">Concepto clave</span>
+      <p><b>Rentabilidad (o interés):</b> lo que crece tu dinero, en porcentaje al año. Si inviertes 100 € y ganas un 7 %, al cabo de un año tienes 107 €. Ese 7 € es tu premio por poner el dinero a trabajar.</p>
+    </div>
+
+    <p>Hay dos formas en que crece el dinero, y la diferencia es enorme:</p>
+
+    <div class="example">
+      <span class="e-tag">Ejemplo con números</span>
+      <h4>Interés simple vs interés compuesto (100 € al 10 %)</h4>
+      <table>
+        <tr><td>&nbsp;</td><td>Simple / Compuesto</td></tr>
+        <tr><td>Año 1</td><td>110 € / 110 €</td></tr>
+        <tr><td>Año 2</td><td>120 € / 121 €</td></tr>
+        <tr><td>Año 3</td><td>130 € / 133 €</td></tr>
+        <tr><td>Año 20</td><td>300 € / 673 €</td></tr>
+      </table>
+      <p class="e-note"><b>Interés simple:</b> ganas siempre 10 € (el 10 % de los 100 € iniciales). <b>Interés compuesto:</b> ganas el 10 % de <b>todo lo acumulado</b>, así que tus intereses también generan intereses. Al principio casi no se nota; a los 20 años, más del doble. Eso es la bola de nieve.</p>
+    </div>
+
+    <p class="lead-cap">Una bola de nieve pequeña rodando montaña abajo recoge más nieve en cada vuelta, y crece cada vez más rápido. Tu dinero hace lo mismo. Y el ingrediente secreto no es meter mucho, es darle <b>mucho tiempo</b>. Por eso tú, con 15–17 años, tienes el activo más valioso que existe: décadas por delante. Muévelo y compruébalo:</p>
+
+    <div class="lab">
+      <span class="lab-label">La calculadora estrella</span>
+      <h3>Construye tu bola de nieve</h3>
+      <p style="color:var(--ink-soft); font-size:.95rem; margin-top:2px;">Mueve las barras y mira cómo cambia tu futuro. Interés compuesto mensual.</p>
+      <div class="ctrl">
+        <div class="ctrl-top"><label for="ciInit">Con lo que empiezas</label><output id="ciInitOut">100 €</output></div>
+        <input type="range" id="ciInit" min="0" max="5000" value="100" step="50">
+      </div>
+      <div class="ctrl">
+        <div class="ctrl-top"><label for="ciMonthly">Aportas cada mes</label><output id="ciMonthlyOut">50 €</output></div>
+        <input type="range" id="ciMonthly" min="0" max="500" value="50" step="10">
+      </div>
+      <div class="ctrl">
+        <div class="ctrl-top"><label for="ciYears">Durante</label><output id="ciYearsOut">40 años</output></div>
+        <input type="range" id="ciYears" min="1" max="50" value="40" step="1">
+      </div>
+      <div class="ctrl">
+        <div class="ctrl-top"><label for="ciRate">Rentabilidad media anual</label><output id="ciRateOut">7,0 %</output></div>
+        <input type="range" id="ciRate" min="0" max="12" value="7" step="0.5">
+      </div>
+      <canvas id="ciChart" width="680" height="300" aria-label="Gráfico del crecimiento del dinero en el tiempo"></canvas>
+      <div class="legend">
+        <span><span class="swatch" style="background:var(--teal)"></span>Lo que pusiste tú</span>
+        <span><span class="swatch" style="background:var(--gold)"></span>Lo que generó el interés</span>
+      </div>
+      <div class="stat-row">
+        <div class="stat"><div class="k">Pusiste de tu bolsillo</div><div class="v num" id="ciContrib">—</div></div>
+        <div class="stat tealv"><div class="k">Lo generó solo el interés</div><div class="v num" id="ciInterest">—</div></div>
+        <div class="stat hero-stat"><div class="k">Tienes al final</div><div class="v num" id="ciTotal">—</div></div>
+      </div>
+      <p style="font-size:.9rem; color:var(--ink-soft); margin-top:16px;" id="ciMsg"></p>
+    </div>
+
+    <div class="callout warn">
+      <h4>La prueba de empezar pronto (esto sorprende)</h4>
+      <p style="margin:0; color:var(--ink-soft);"><b>Ana</b> invierte 50 €/mes desde los 16 hasta los 26 (10 años) y luego <b>para</b> y no toca nada más. <b>Leo</b> empieza a los 26 y aporta 50 €/mes <b>sin parar</b> hasta los 60. A un 7 % anual, Ana suele acabar con <b>más</b> dinero a los 60 que Leo… habiendo puesto mucho menos. ¿El truco? Le dio 10 años más de ventaja a la bola de nieve. El tiempo pesa más que la cantidad.</p>
+    </div>
+
+    <div class="note">
+      <span class="who">Atribuida (con humor) a Einstein</span>
+      <p>El interés compuesto es la octava maravilla del mundo: quien lo entiende, lo cobra; quien no, lo paga.</p>
+    </div>
+
+    <div class="quiz" data-answer="2">
+      <span class="q-tag">Prueba de comprensión</span>
+      <p class="q">¿Cuál es el ingrediente que más potencia el interés compuesto?</p>
+      <div class="opts">
+        <button class="opt">Meter mucho dinero de golpe una sola vez.</button>
+        <button class="opt">Adivinar el mejor día para invertir.</button>
+        <button class="opt">El tiempo: cuantos más años, más se dispara la bola de nieve.</button>
+      </div>
+      <div class="fb" data-ok="Exacto. La cantidad ayuda, pero el TIEMPO es el multiplicador de verdad. Por eso empezar pronto, aunque sea con poco, es una ventaja enorme que tienes justo ahora." data-no="Recuerda a Ana y Leo: Ana ganó por EMPEZAR ANTES, no por poner más. En el interés compuesto, el tiempo es el ingrediente estrella."></div>
+    </div>
+  </div>
+</section>
+
+<!-- CAP 8 -->
+<section class="chapter" id="cap8">
+  <div class="wrap">
+    <div class="chapter-head"><span class="chapter-no">08</span><span class="eyebrow">Los cimientos de invertir</span></div>
+    <h2>Qué es invertir: riesgo, rentabilidad y diversificar</h2>
+    <p class="sub">Antes de ver dónde meter el dinero, tres palabras que lo explican casi todo.</p>
+
+    <p><b>Invertir</b> es usar tu dinero para comprar algo que esperas que valga más en el futuro, o que te genere más dinero. No es apostar: apostar es azar puro (una ruleta); invertir bien es poner el dinero en cosas que producen valor real durante mucho tiempo, como trocitos de empresas que fabrican y venden cosas.</p>
+
+    <div class="concept">
+      <span class="c-word">Las tres palabras del inversor</span>
+      <p><b>Rentabilidad:</b> cuánto puede crecer tu dinero. <b>Riesgo:</b> la posibilidad de que baje o de que pierdas parte. <b>Liquidez:</b> lo fácil que es convertirlo en dinero contante cuando lo necesites.</p>
+    </div>
+
+    <p>La regla que nunca falla: <b>a mayor rentabilidad esperada, mayor riesgo</b>. Nadie te da premios altos sin arriesgar. Si alguien te promete "mucho y seguro", huye: es mentira o es una estafa. La pregunta no es "¿cómo gano muchísimo?", sino "¿cuánto riesgo puedo aguantar sin perder el sueño?".</p>
+
+    <div class="callout">
+      <h4>La idea que reduce el riesgo casi gratis: diversificar</h4>
+      <p style="margin:0; color:var(--ink-soft);">No pongas todos los huevos en la misma cesta. Si metes todo tu dinero en una sola empresa y quiebra, lo pierdes todo. Si lo repartes entre cientos de empresas, que una caiga apenas se nota. Diversificar es repartir para que ningún fallo aislado te hunda. Y hay una herramienta que lo hace por ti casi sin esfuerzo, que verás en el próximo capítulo.</p>
+    </div>
+
+    <div class="quiz" data-answer="1">
+      <span class="q-tag">Prueba de comprensión</span>
+      <p class="q">Alguien en redes te promete "duplicar tu dinero en un mes, sin ningún riesgo". ¿Qué deberías pensar?</p>
+      <div class="opts">
+        <button class="opt">Que es una oportunidad increíble y hay que entrar rápido.</button>
+        <button class="opt">Que es falso o una estafa: rentabilidad alta sin riesgo no existe.</button>
+        <button class="opt">Que seguro funciona porque tiene muchos seguidores.</button>
+      </div>
+      <div class="fb" data-ok="Eso es. La regla 'más rentabilidad = más riesgo' no tiene excepciones. Quien promete ganancias grandes y seguras casi siempre gana él a tu costa. La desconfianza aquí es tu mejor amiga." data-no="Recuerda la regla de oro: no existe rentabilidad alta SIN riesgo. Una promesa de 'mucho y seguro' es la señal clásica de una estafa, tenga los seguidores que tenga."></div>
+    </div>
+  </div>
+</section>
+
+<!-- CAP 9 -->
+<section class="chapter" id="cap9">
+  <div class="wrap">
+    <div class="chapter-head"><span class="chapter-no">09</span><span class="eyebrow">Dos filosofías</span></div>
+    <h2>Inversión activa vs pasiva y los fondos indexados</h2>
+    <p class="sub">Hay dos maneras muy distintas de invertir. Una parece la lista… y suele perder.</p>
+
+    <div class="assets">
+      <div class="asset" style="--acc: var(--rust)">
+        <div class="role">Modo difícil</div>
+        <h4>Inversión activa</h4>
+        <p>Intentas ganar al mercado: elegir "las empresas ganadoras" y acertar cuándo comprar barato y vender caro. Emocionante, pero exige tiempo, conocimiento y aguante. La mayoría de profesionales que lo intentan no lo consiguen a largo plazo.</p>
+      </div>
+      <div class="asset" style="--acc: var(--teal)">
+        <div class="role">Modo tranquilo</div>
+        <h4>Inversión pasiva</h4>
+        <p>No intentas adivinar nada: compras un trocito de <b>todo</b> el mercado a la vez y lo dejas crecer durante años. Aburrido, barato y, sorprendentemente, suele ganar a los "listos".</p>
+      </div>
+    </div>
+
+    <div class="concept">
+      <span class="c-word">Concepto clave</span>
+      <p><b>Fondo indexado:</b> un paquetito que contiene un cachito de muchísimas empresas a la vez (por ejemplo, las 500 más grandes de EE. UU., o las ~1.600 más grandes del mundo). Comprando una sola cosa, quedas diversificado al instante. Si a la economía mundial le va bien a largo plazo, a ti también.</p>
+    </div>
+
+    <p>La inversión pasiva con fondos indexados es, para la mayoría de la gente normal, la mejor forma de empezar: es barata, no hay que estar pendiente, y evita el error de intentar adivinar el futuro. Diversificas de golpe y dejas que el tiempo y el interés compuesto hagan el trabajo.</p>
+
+    <div class="note">
+      <span class="who">Idea de John Bogle · creador del primer fondo indexado</span>
+      <p>No busques la aguja en el pajar: compra el pajar entero.</p>
+    </div>
+
+    <p><b>Warren Buffett</b>, uno de los mejores inversores de la historia, dejó dicho que cuando él muera, el dinero de su familia debería ir a un simple fondo indexado de bajo coste. Si al mejor de todos le vale eso para su propia familia, es una pista bastante buena.</p>
+
+    <div class="quiz" data-answer="0">
+      <span class="q-tag">Prueba de comprensión</span>
+      <p class="q">¿Qué ventaja principal tiene un fondo indexado para alguien que empieza?</p>
+      <div class="opts">
+        <button class="opt">Con una sola compra ya estás diversificado en cientos de empresas, de forma barata y sin tener que adivinar cuál subirá.</button>
+        <button class="opt">Garantiza que ganarás dinero todos los años sin ningún riesgo.</button>
+        <button class="opt">Te permite comprar una única empresa muy prometedora.</button>
+      </div>
+      <div class="fb" data-ok="¡Correcto! Esa es su gran gracia: diversificación instantánea y barata. Ojo, no garantiza ganar cada año (puede bajar a corto plazo), pero a largo plazo y bien diversificado es la opción de referencia para empezar." data-no="Justo lo contrario a comprar una sola empresa: un fondo indexado compra MUCHAS a la vez. Eso sí, no garantiza ganancias cada año; su fuerza es la diversificación barata a largo plazo."></div>
+    </div>
+  </div>
+</section>
+
+<!-- CAP 10 -->
+<section class="chapter" id="cap10">
+  <div class="wrap">
+    <div class="chapter-head"><span class="chapter-no">10</span><span class="eyebrow">El menú</span></div>
+    <h2>El menú de inversiones: bolsa, inmobiliario, cripto</h2>
+    <p class="sub">Cada opción equilibra distinto el riesgo, la rentabilidad y la facilidad de recuperar el dinero. No hay una "mejor": hay una mejor para cada objetivo.</p>
+
+    <div class="assets">
+      <div class="asset" style="--acc: var(--teal)">
+        <div class="role">Base recomendada para empezar</div>
+        <h4>Fondos indexados</h4>
+        <p>Un trocito de miles de empresas a la vez. Barato, diversificado y pensado para dejarlo décadas.</p>
+        <div class="meter">
+          <div class="m">Riesgo<span class="bar"><i style="width:45%"></i></span></div>
+          <div class="m">Potencial<span class="bar"><i style="width:70%"></i></span></div>
+          <div class="m">Liquidez<span class="bar"><i style="width:80%"></i></span></div>
+        </div>
+      </div>
+      <div class="asset" style="--acc: var(--gold)">
+        <div class="role">Empresas sueltas</div>
+        <h4>Bolsa / acciones</h4>
+        <p>Comprar trozos de una empresa concreta (Apple, Inditex…). Más emoción y más riesgo: una sola empresa puede volar o hundirse.</p>
+        <div class="meter">
+          <div class="m">Riesgo<span class="bar"><i style="width:70%"></i></span></div>
+          <div class="m">Potencial<span class="bar"><i style="width:78%"></i></span></div>
+          <div class="m">Liquidez<span class="bar"><i style="width:85%"></i></span></div>
+        </div>
+      </div>
+      <div class="asset" style="--acc: var(--plum)">
+        <div class="role">Ladrillo</div>
+        <h4>Inmobiliario</h4>
+        <p>Comprar una vivienda para vivir o alquilar. Tangible y estable, pero necesita mucho dinero de entrada y no lo vendes en un día.</p>
+        <div class="meter">
+          <div class="m">Riesgo<span class="bar"><i style="width:40%"></i></span></div>
+          <div class="m">Potencial<span class="bar"><i style="width:55%"></i></span></div>
+          <div class="m">Liquidez<span class="bar"><i style="width:20%"></i></span></div>
+        </div>
+      </div>
+      <div class="asset" style="--acc: var(--rust)">
+        <div class="role">La montaña rusa</div>
+        <h4>Criptomonedas</h4>
+        <p>Dinero digital (Bitcoin, etc.). Puede subir o bajar un 50 % en semanas. Tecnología interesante, pero muy especulativa: si entras, que sea con dinero que puedas permitirte perder.</p>
+        <div class="meter">
+          <div class="m">Riesgo<span class="bar"><i style="width:95%"></i></span></div>
+          <div class="m">Potencial<span class="bar"><i style="width:90%"></i></span></div>
+          <div class="m">Liquidez<span class="bar"><i style="width:75%"></i></span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout warn">
+      <h4>Regla de oro con lo arriesgado (cripto incluida)</h4>
+      <p style="margin:0; color:var(--ink-soft);">Si algo promete "hacerte rico rápido y sin riesgo", es mentira. Punto. Desconfía de los famosos y "gurús" de redes que venden el pelotazo: muchos cobran por hacerte comprar. Lo arriesgado, como mucho, una porción pequeña de tu dinero (por ejemplo, un 5 %), y solo cuando ya tengas colchón y una base tranquila con fondos indexados.</p>
+    </div>
+
+    <div class="quiz" data-answer="2">
+      <span class="q-tag">Prueba de comprensión</span>
+      <p class="q">De estas opciones, ¿cuál es la más difícil de convertir en dinero rápido (menos líquida)?</p>
+      <div class="opts">
+        <button class="opt">Un fondo indexado.</button>
+        <button class="opt">Acciones de una empresa en bolsa.</button>
+        <button class="opt">Un piso (inmobiliario).</button>
+      </div>
+      <div class="fb" data-ok="Correcto. Un piso puede tardar meses en venderse; un fondo o unas acciones se venden en un día. Esa facilidad (o dificultad) para pasar a dinero es la 'liquidez'." data-no="Piensa en cuál tardarías más en vender si necesitaras el dinero mañana. Un fondo o unas acciones se venden en un día; un piso puede tardar meses. Esa es la 'liquidez'."></div>
+    </div>
+  </div>
+</section>
+
+<!-- CAP 11 -->
+<section class="chapter" id="cap11">
+  <div class="wrap">
+    <div class="chapter-head"><span class="chapter-no">11</span><span class="eyebrow">El factor humano</span></div>
+    <h2>Tu cabeza: el factor que más importa</h2>
+    <p class="sub">Se puede saber toda la teoría y aun así perder dinero por culpa de las emociones. La calma vale más que las matemáticas.</p>
+
+    <p>Cuando la bolsa sube, todos quieren comprar (avaricia). Cuando baja, todos quieren vender (miedo). Y así se hace justo lo contrario de lo inteligente: comprar caro y vender barato. El buen inversor no es el más listo, es el que <b>mantiene la calma</b> y no toca su plan cuando el resto se pone nervioso.</p>
+
+    <ul class="clean">
+      <li><b>No intentes adivinar el momento perfecto.</b> Estar dentro mucho tiempo gana a intentar acertar el mejor día para entrar.</li>
+      <li><b>Automatiza.</b> Programa que cada mes se invierta sola una cantidad fija. Así no dependes de tu ánimo ni de las noticias.</li>
+      <li><b>Ignora el ruido.</b> Las noticias viven del drama. Tu plan es de décadas; una mala semana no significa nada.</li>
+      <li><b>La constancia gana al talento.</b> Poco, pero siempre, todos los meses.</li>
+    </ul>
+
+    <div class="note">
+      <span class="who">Idea de Morgan Housel · "La psicología del dinero"</span>
+      <p>Hacerse rico y mantenerse rico son dos habilidades distintas: la segunda es paciencia.</p>
+    </div>
+
+    <div class="quiz" data-answer="1">
+      <span class="q-tag">Prueba de comprensión</span>
+      <p class="q">La bolsa cae con fuerza y las noticias son alarmantes. Tú inviertes a 30 años. ¿Qué suele ser lo más sensato?</p>
+      <div class="opts">
+        <button class="opt">Vender todo rápido antes de perder más.</button>
+        <button class="opt">Mantener la calma y seguir tu plan: una caída a corto plazo no cambia un plan de décadas.</button>
+        <button class="opt">Mirar el móvil cada hora para reaccionar al instante.</button>
+      </div>
+      <div class="fb" data-ok="Eso es. Vender con miedo es cómo mucha gente pierde dinero de verdad: convierte una bajada temporal en una pérdida real. Con horizonte de décadas, la calma es tu superpoder." data-no="Vender por miedo suele ser el error más caro: transformas una caída pasajera en una pérdida definitiva. Con 30 años por delante, lo sensato casi siempre es no tocar el plan."></div>
+    </div>
+  </div>
+</section>
+
+<!-- CIERRE: reglas -->
+<section class="chapter" id="reglas">
+  <div class="wrap">
+    <div class="chapter-head"><span class="chapter-no">★</span><span class="eyebrow">Chuleta final</span></div>
+    <h2>Las 8 reglas de oro</h2>
+    <p class="sub">Si te olvidas de todo lo demás, quédate con esto. Vale para toda la vida.</p>
+    <div class="rules">
+      <div class="rule"><div><b>Gasta menos de lo que ganas.</b><p>La base de todo. Sin esto, nada del resto funciona.</p></div></div>
+      <div class="rule"><div><b>Págate a ti primero.</b><p>Aparta el ahorro nada más cobrar, no con lo que sobre al final (nunca sobra).</p></div></div>
+      <div class="rule"><div><b>Huye de la deuda de capricho.</b><p>Usa débito; si usas crédito, paga el total cada mes para no pagar intereses.</p></div></div>
+      <div class="rule"><div><b>Ten un colchón antes de invertir.</b><p>3–6 meses de gastos guardados y accesibles al instante.</p></div></div>
+      <div class="rule"><div><b>Empieza pronto, aunque sea con poco.</b><p>El tiempo es más poderoso que la cantidad. Tu edad es tu mayor ventaja.</p></div></div>
+      <div class="rule"><div><b>Diversifica.</b><p>Nunca todos los huevos en la misma cesta. Los fondos indexados lo hacen por ti.</p></div></div>
+      <div class="rule"><div><b>Invierte a largo plazo y no lo toques.</b><p>Deja rodar la bola de nieve. Vender con miedo es el error caro.</p></div></div>
+      <div class="rule"><div><b>Desconfía del dinero fácil.</b><p>Si suena demasiado bueno para ser verdad, es una estafa. Sin excepciones.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Repaso final -->
+<section class="chapter" id="repaso">
+  <div class="wrap">
+    <div class="chapter-head"><span class="chapter-no">✓</span><span class="eyebrow">Examen final</span></div>
+    <h2>Repaso: ¿lo has pillado todo?</h2>
+    <p class="sub">Tres preguntas que mezclan todo el curso. Si las aciertas, dominas lo esencial.</p>
+
+    <div class="quiz" data-answer="1">
+      <span class="q-tag">Pregunta 1 de 3</span>
+      <p class="q">¿Por qué NO conviene guardar todos tus ahorros parados en una cuenta durante 30 años?</p>
+      <div class="opts">
+        <button class="opt">Porque el banco los usa sin permiso.</button>
+        <button class="opt">Porque la inflación les quita poder de compra y, además, pierdes el crecimiento del interés compuesto.</button>
+        <button class="opt">Porque es ilegal ahorrar tanto tiempo.</button>
+      </div>
+      <div class="fb" data-ok="¡Muy bien! Dos golpes a la vez: la inflación los encoge y, al no invertirlos, renuncias a la bola de nieve. Por eso se ahorra un colchón… y el resto se pone a trabajar." data-no="Une dos ideas del curso: la inflación (Cap. 3) reduce el poder de compra del dinero quieto, y no invertir (Cap. 7) te hace perder el interés compuesto."></div>
+    </div>
+
+    <div class="quiz" data-answer="0">
+      <span class="q-tag">Pregunta 2 de 3</span>
+      <p class="q">Tienes 40 años por delante y quieres empezar a invertir tu ahorro mensual de forma sencilla. ¿Qué encaja mejor con lo aprendido?</p>
+      <div class="opts">
+        <button class="opt">Aportar cada mes a un fondo indexado diversificado y dejarlo crecer sin tocarlo.</button>
+        <button class="opt">Meter todos mis ahorros en una sola criptomoneda de moda.</button>
+        <button class="opt">Esperar a adivinar el día perfecto para invertirlo todo de golpe.</button>
+      </div>
+      <div class="fb" data-ok="Perfecto: aportación periódica + diversificación + largo plazo + no tocarlo. Has juntado los capítulos 7, 9 y 11 en una sola decisión sensata." data-no="Recuerda: diversificar (no una sola cripto), no intentar adivinar el mejor día, y aprovechar el tiempo. Todo eso apunta al fondo indexado con aportaciones mensuales."></div>
+    </div>
+
+    <div class="quiz" data-answer="2">
+      <span class="q-tag">Pregunta 3 de 3</span>
+      <p class="q">Ganas 1.000 € brutos y "subes de tramo" de IRPF por ganar 50 € más. ¿Qué es verdad?</p>
+      <div class="opts">
+        <button class="opt">Ahora todo mi sueldo paga el porcentaje más alto, así que gano menos.</button>
+        <button class="opt">Los impuestos no dependen de cuánto ganes.</button>
+        <button class="opt">Solo esos 50 € extra tributan al tipo más alto; sigo cobrando más neto que antes.</button>
+      </div>
+      <div class="fb" data-ok="¡Examen superado! Los tramos son cajones: el tipo alto solo toca los euros del cajón alto. Ganar más siempre deja más en el bolsillo." data-no="Vuelve al mito de los tramos (Cap. 6): funcionan como cajones independientes. Solo la porción que entra en el tramo alto paga el tipo alto; ganar más siempre compensa."></div>
+    </div>
+  </div>
+</section>
+
+<!-- Divulgadores -->
+<section class="chapter" id="divulgadores">
+  <div class="wrap">
+    <div class="chapter-head"><span class="chapter-no">＋</span><span class="eyebrow">Para seguir aprendiendo</span></div>
+    <h2>Los mejores divulgadores</h2>
+    <p class="sub">Gente que explica el dinero bien y honesto. Buen punto de partida para leer o escuchar juntos.</p>
+    <div class="people">
+      <div class="person"><b>Morgan Housel</b><span class="work">Libro · La psicología del dinero</span><p>Por qué nos comportamos raro con el dinero. Corto, ameno y de los mejores para empezar.</p></div>
+      <div class="person"><b>Natalia de Santiago</b><span class="work">Libro · Sí, tú puedes tener finanzas sanas</span><p>Finanzas personales en español, claras y sin humo. Ideal para principiantes.</p></div>
+      <div class="person"><b>Value School</b><span class="work">YouTube / pódcast (España)</span><p>Educación financiera seria e independiente sobre inversión a largo plazo.</p></div>
+      <div class="person"><b>John Bogle</b><span class="work">Libro · Cómo invertir con sentido común</span><p>El padre de la inversión indexada. La biblia del "invierte simple y barato".</p></div>
+      <div class="person"><b>Ramit Sethi</b><span class="work">Libro · I Will Teach You To Be Rich</span><p>Automatizar tus finanzas y gastar sin culpa en lo que amas. Muy práctico.</p></div>
+      <div class="person"><b>Warren Buffett</b><span class="work">Cartas anuales de Berkshire Hathaway</span><p>Sentido común inversor del mejor de todos, gratis en su web. Para más adelante.</p></div>
+    </div>
+  </div>
+</section>
+
+<footer class="wrap">
+  <div class="disclaimer">
+    <b>Aviso importante.</b> Esta guía es material <b>educativo</b> para entender conceptos, no es asesoramiento financiero personalizado ni una recomendación de comprar ningún producto concreto. Las rentabilidades pasadas no garantizan las futuras y toda inversión puede perder valor. Antes de invertir de verdad, informaos bien y, si hace falta, consultad con un profesional acreditado. Los porcentajes de impuestos y los ejemplos son orientativos y pueden cambiar según el año y la comunidad autónoma.
+  </div>
+  <p style="text-align:center; color:var(--ink-soft); font-family:var(--font-mono); font-size:.78rem; margin-top:26px;">El Manual del Dinero · curso paso a paso de finanzas personales desde cero</p>
+</footer>
+
+</main>
+
+<script>
+(function () {
+  var eur = function (n) { return new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(Math.round(n)); };
+
+  var root = document.documentElement;
+  var btn = document.getElementById('themeBtn');
+  function currentDark() { var t = root.getAttribute('data-theme'); if (t) return t === 'dark'; return window.matchMedia('(prefers-color-scheme: dark)').matches; }
+  function syncBtn() { btn.textContent = currentDark() ? 'Modo claro' : 'Modo oscuro'; }
+  btn.addEventListener('click', function () { root.setAttribute('data-theme', currentDark() ? 'light' : 'dark'); syncBtn(); drawCompound(); });
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function () { syncBtn(); drawCompound(); });
+  syncBtn();
+  function cssVar(name) { return getComputedStyle(document.body).getPropertyValue(name).trim(); }
+
+  var prog = document.getElementById('progress');
+  window.addEventListener('scroll', function () { var h = document.documentElement; prog.style.width = (h.scrollTop / (h.scrollHeight - h.clientHeight) * 100) + '%'; }, { passive: true });
+
+  /* Quiz engine */
+  document.querySelectorAll('.quiz').forEach(function (q) {
+    var answer = parseInt(q.getAttribute('data-answer'), 10);
+    var opts = Array.prototype.slice.call(q.querySelectorAll('.opt'));
+    var fb = q.querySelector('.fb');
+    var solved = false;
+    opts.forEach(function (opt, idx) {
+      opt.addEventListener('click', function () {
+        if (solved) return;
+        if (idx === answer) {
+          solved = true;
+          opt.classList.add('correct');
+          opts.forEach(function (o) { o.setAttribute('disabled', 'true'); });
+          fb.textContent = '✓ ' + fb.getAttribute('data-ok');
+          fb.className = 'fb ok show';
+        } else {
+          opt.classList.add('wrong');
+          opt.setAttribute('disabled', 'true');
+          fb.textContent = '✗ ' + fb.getAttribute('data-no') + ' (Inténtalo otra vez.)';
+          fb.className = 'fb no show';
+        }
+      });
+    });
+  });
+
+  /* Hero snow */
+  var snow = document.getElementById('snow');
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (snow && !reduce) {
+    var sc = snow.getContext('2d'), flakes = [];
+    function sizeSnow() { snow.width = snow.offsetWidth; snow.height = snow.offsetHeight; }
+    sizeSnow(); window.addEventListener('resize', sizeSnow);
+    for (var i = 0; i < 34; i++) flakes.push({ x: Math.random(), y: Math.random(), r: Math.random() * 2.5 + 1, s: Math.random() * 0.25 + 0.05 });
+    (function loop() {
+      sc.clearRect(0, 0, snow.width, snow.height);
+      sc.fillStyle = cssVar('--gold');
+      for (var k = 0; k < flakes.length; k++) { var f = flakes[k]; f.y += f.s / 100; if (f.y > 1.05) f.y = -0.05; sc.globalAlpha = 0.25; sc.beginPath(); sc.arc(f.x * snow.width, f.y * snow.height, f.r, 0, Math.PI * 2); sc.fill(); }
+      requestAnimationFrame(loop);
+    })();
+  }
+
+  /* Inflation */
+  var iy = document.getElementById('inflYears'), ir = document.getElementById('inflRate');
+  function inflation() {
+    var years = +iy.value, rate = +ir.value / 100;
+    document.getElementById('inflYearsOut').textContent = years + (years === 1 ? ' año' : ' años');
+    document.getElementById('inflRateOut').textContent = (+ir.value).toLocaleString('es-ES', { minimumFractionDigits: 1 }) + ' %';
+    var value = 100 / Math.pow(1 + rate, years);
+    document.getElementById('inflCoin').innerHTML = Math.round(value) + ' €<br><span style="font-size:.7rem;font-weight:400;">dentro de ' + years + ' años</span>';
+    var lost = Math.round(100 - value);
+    document.getElementById('inflMsg').textContent = rate === 0
+      ? 'Sin inflación (algo casi imposible en la vida real), tus 100 € seguirían comprando lo mismo.'
+      : 'Con una inflación del ' + (+ir.value).toLocaleString('es-ES', {minimumFractionDigits:1}) + ' %, en ' + years + ' años esos 100 € comprarían lo mismo que hoy compran ' + Math.round(value) + ' €. Has perdido el equivalente a ' + lost + ' € de poder de compra… sin gastar nada.';
+  }
+  iy.addEventListener('input', inflation); ir.addEventListener('input', inflation); inflation();
+
+  /* Budget */
+  var inc = document.getElementById('income');
+  function budget() {
+    var m = +inc.value;
+    document.getElementById('incomeOut').textContent = eur(m);
+    document.getElementById('bNeed').textContent = eur(m * 0.5);
+    document.getElementById('bWant').textContent = eur(m * 0.3);
+    document.getElementById('bSave').textContent = eur(m * 0.2);
+    var save = m * 0.2;
+    var y10 = save * 12 * ((Math.pow(1 + 0.07/12, 120) - 1) / (0.07/12));
+    document.getElementById('budgetMsg').innerHTML = 'Ese ' + eur(save) + '/mes de la parte "tu yo del futuro" no es poco: invertido a un 7 %, en 10 años se convertiría en unos <b>' + eur(y10) + '</b>. La constancia hace milagros.';
+  }
+  inc.addEventListener('input', budget); budget();
+
+  /* Compound interest */
+  var ci = { init: document.getElementById('ciInit'), monthly: document.getElementById('ciMonthly'), years: document.getElementById('ciYears'), rate: document.getElementById('ciRate') };
+  var canvas = document.getElementById('ciChart');
+  function series() {
+    var P = +ci.init.value, m = +ci.monthly.value, yrs = +ci.years.value, r = +ci.rate.value / 100;
+    var i = r / 12, months = yrs * 12, bal = P, pts = [{ y: 0, total: bal, contrib: P }];
+    for (var mo = 1; mo <= months; mo++) { bal = bal * (1 + i) + m; if (mo % 12 === 0) pts.push({ y: mo / 12, total: bal, contrib: P + m * mo }); }
+    return { pts: pts, yrs: yrs, contribFinal: P + m * months, totalFinal: bal };
+  }
+  function drawCompound() {
+    var d = series(), pts = d.pts, ctx = canvas.getContext('2d');
+    var cssW = canvas.clientWidth || 680, cssH = 300, dpr = window.devicePixelRatio || 1;
+    canvas.width = cssW * dpr; canvas.height = cssH * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.clearRect(0, 0, cssW, cssH);
+    var padL = 8, padR = 8, padT = 14, padB = 22, W = cssW - padL - padR, H = cssH - padT - padB;
+    var maxV = pts[pts.length - 1].total || 1, n = pts.length - 1;
+    var gold = cssVar('--gold'), teal = cssVar('--teal'), line = cssVar('--line'), soft = cssVar('--ink-soft');
+    function X(k) { return padL + (n === 0 ? 0 : (k / n) * W); }
+    function Y(v) { return padT + H - (v / maxV) * H; }
+    ctx.strokeStyle = line; ctx.lineWidth = 1; ctx.globalAlpha = 0.6;
+    for (var g = 0; g <= 4; g++) { var yy = padT + (g / 4) * H; ctx.beginPath(); ctx.moveTo(padL, yy); ctx.lineTo(padL + W, yy); ctx.stroke(); }
+    ctx.globalAlpha = 1;
+    ctx.beginPath(); ctx.moveTo(X(0), Y(pts[0].total));
+    for (var a = 1; a < pts.length; a++) ctx.lineTo(X(a), Y(pts[a].total));
+    ctx.lineTo(X(n), padT + H); ctx.lineTo(X(0), padT + H); ctx.closePath();
+    ctx.fillStyle = gold; ctx.globalAlpha = 0.30; ctx.fill(); ctx.globalAlpha = 1;
+    ctx.beginPath(); ctx.moveTo(X(0), Y(pts[0].contrib));
+    for (var b = 1; b < pts.length; b++) ctx.lineTo(X(b), Y(pts[b].contrib));
+    ctx.lineTo(X(n), padT + H); ctx.lineTo(X(0), padT + H); ctx.closePath();
+    ctx.fillStyle = teal; ctx.globalAlpha = 0.55; ctx.fill(); ctx.globalAlpha = 1;
+    ctx.beginPath(); ctx.moveTo(X(0), Y(pts[0].total));
+    for (var c = 1; c < pts.length; c++) ctx.lineTo(X(c), Y(pts[c].total));
+    ctx.strokeStyle = gold; ctx.lineWidth = 2.5; ctx.stroke();
+    ctx.beginPath(); ctx.arc(X(n), Y(pts[n].total), 4.5, 0, Math.PI * 2); ctx.fillStyle = gold; ctx.fill();
+    ctx.strokeStyle = cssVar('--surface'); ctx.lineWidth = 2; ctx.stroke();
+    ctx.fillStyle = soft; ctx.font = '11px ui-monospace, Menlo, monospace'; ctx.globalAlpha = 0.8;
+    ctx.textAlign = 'left'; ctx.fillText('hoy', padL, cssH - 6);
+    ctx.textAlign = 'right'; ctx.fillText(d.yrs + ' años', padL + W, cssH - 6); ctx.globalAlpha = 1;
+    var interest = d.totalFinal - d.contribFinal;
+    document.getElementById('ciInitOut').textContent = eur(+ci.init.value);
+    document.getElementById('ciMonthlyOut').textContent = eur(+ci.monthly.value);
+    document.getElementById('ciYearsOut').textContent = ci.years.value + ' años';
+    document.getElementById('ciRateOut').textContent = (+ci.rate.value).toLocaleString('es-ES', { minimumFractionDigits: 1 }) + ' %';
+    document.getElementById('ciContrib').textContent = eur(d.contribFinal);
+    document.getElementById('ciInterest').textContent = eur(interest);
+    document.getElementById('ciTotal').textContent = eur(d.totalFinal);
+    var ratio = d.contribFinal > 0 ? interest / d.contribFinal : 0, msg;
+    if (interest <= 0) msg = 'Con un 0 % de rentabilidad no hay bola de nieve: solo recuperas lo que pones. Sube la rentabilidad y mira la diferencia.';
+    else if (ratio < 1) msg = 'De momento pones tú más de lo que genera el interés. Dale más años y la parte dorada acabará comiéndose a la verde.';
+    else msg = '¡Fíjate! El interés (parte dorada) ha generado ' + ratio.toFixed(1) + ' veces lo que tú pusiste. La mayor parte de tu dinero final ' + eur(d.totalFinal) + ' no salió de tu bolsillo: lo creó el tiempo.';
+    document.getElementById('ciMsg').innerHTML = msg;
+  }
+  Object.keys(ci).forEach(function (k) { ci[k].addEventListener('input', drawCompound); });
+  window.addEventListener('resize', drawCompound);
+  drawCompound();
+})();
+</script>
+</body>
+</html>
