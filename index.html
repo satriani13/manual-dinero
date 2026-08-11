@@ -154,6 +154,37 @@
   .quiz .fb.no { background: color-mix(in srgb, var(--rust) 10%, var(--surface)); border: 1px solid color-mix(in srgb, var(--rust) 35%, var(--line)); }
   .quiz .fb b { font-family: var(--font-display); }
 
+  /* quiz progress pill (topbar) */
+  .qprog { position: relative; overflow: hidden; display: inline-flex; align-items: center; gap: 7px; font-family: var(--font-mono); font-size: .72rem; color: var(--ink-soft); border: 1px solid var(--line); background: var(--surface); border-radius: 999px; padding: 5px 12px; }
+  .qprog .qp-fill { position: absolute; left: 0; top: 0; bottom: 0; width: 0%; background: color-mix(in srgb, var(--gold) 24%, transparent); z-index: 0; transition: width .4s ease; }
+  .qprog .qp-ico, .qprog .qp-txt { position: relative; z-index: 1; }
+  .qprog .qp-ico { color: var(--gold-strong); font-weight: 700; }
+  .qprog.done { border-color: var(--gold); color: var(--ink); }
+  .qprog.done .qp-ico { color: var(--gold-strong); }
+  @media (max-width: 540px) { .qprog .qp-lbl { display: none; } }
+
+  /* reading recommendations */
+  .reads { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 16px 20px; margin: 24px 0; box-shadow: var(--shadow); }
+  .reads .r-label { font-family: var(--font-mono); font-size: .7rem; letter-spacing: .14em; text-transform: uppercase; color: var(--gold-strong); display: inline-flex; gap: 8px; align-items: center; margin-bottom: 4px; }
+  .reads .r-label::before { content: "📖"; }
+  .book { padding: 12px 0; border-top: 1px dashed var(--line); }
+  .book:first-of-type { border-top: 0; }
+  .book b { font-family: var(--font-display); font-size: 1.04rem; }
+  .book .bk-auth { color: var(--teal); font-size: .82rem; font-family: var(--font-mono); }
+  .book p { font-size: .9rem; color: var(--ink-soft); margin: 4px 0 0; }
+
+  /* comparison table */
+  .compare-wrap { overflow-x: auto; margin: 26px 0; border: 1px solid var(--line); border-radius: 14px; }
+  .compare { width: 100%; border-collapse: collapse; font-size: .88rem; min-width: 620px; }
+  .compare th, .compare td { padding: 11px 14px; text-align: left; border-bottom: 1px solid var(--line); }
+  .compare thead th { font-family: var(--font-mono); font-size: .66rem; letter-spacing: .07em; text-transform: uppercase; color: var(--ink-soft); background: var(--surface-2); }
+  .compare tbody tr:last-child td { border-bottom: 0; }
+  .compare td:first-child { font-weight: 600; font-family: var(--font-display); }
+  .pill { font-family: var(--font-mono); font-size: .7rem; padding: 2px 9px; border-radius: 999px; white-space: nowrap; }
+  .pill.low { background: color-mix(in srgb, var(--teal) 20%, transparent); color: var(--teal); }
+  .pill.mid { background: color-mix(in srgb, var(--gold) 24%, transparent); color: var(--gold-strong); }
+  .pill.high { background: color-mix(in srgb, var(--rust) 18%, transparent); color: var(--rust); }
+
   /* interactive lab */
   .lab { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 26px 24px; margin: 30px 0; box-shadow: var(--shadow); }
   .lab-label { font-family: var(--font-mono); font-size: .7rem; letter-spacing: .16em; text-transform: uppercase; color: var(--teal); display: inline-flex; align-items: center; gap: 8px; margin-bottom: 14px; }
@@ -235,6 +266,11 @@
 <div class="topbar">
   <div class="wrap topbar-inner">
     <div class="brand">El Manual del <span>Dinero</span></div>
+    <div class="qprog" id="qprog" role="progressbar" aria-label="Preguntas acertadas" aria-valuemin="0" aria-valuenow="0" title="Progreso de las preguntas (se guarda para tu usuario)">
+      <span class="qp-fill" id="qpFill"></span>
+      <span class="qp-ico">✓</span>
+      <span class="qp-txt"><span id="qpTxt">0/0</span> <span class="qp-lbl">preguntas</span></span>
+    </div>
     <button class="tbtn" id="themeBtn" aria-label="Cambiar tema">Modo oscuro</button>
     <div class="progress" id="progress"></div>
   </div>
@@ -271,6 +307,19 @@
         <li><a href="#cap9"><span class="pn">09</span><span>Inversión activa vs pasiva y los fondos indexados</span></a></li>
         <li><a href="#cap10"><span class="pn">10</span><span>El menú de inversiones: bolsa, inmobiliario, cripto</span></a></li>
         <li><a href="#cap11"><span class="pn">11</span><span>Tu cabeza: el factor que más importa</span></a></li>
+      </ol>
+
+      <div class="path-mod">Fase 2 · Profundiza en las inversiones</div>
+      <ol>
+        <li><a href="#cap12"><span class="pn">12</span><span>Fondos indexados a fondo (y su ventaja fiscal)</span></a></li>
+        <li><a href="#cap13"><span class="pn">13</span><span>Fondos de gestión activa y la trampa de las comisiones</span></a></li>
+        <li><a href="#cap14"><span class="pn">14</span><span>ETFs: el fondo que cotiza en bolsa</span></a></li>
+        <li><a href="#cap15"><span class="pn">15</span><span>ETCs: oro y materias primas cotizadas</span></a></li>
+        <li><a href="#cap16"><span class="pn">16</span><span>Crowdlending: prestar tu dinero con intereses</span></a></li>
+        <li><a href="#cap17"><span class="pn">17</span><span>Crowdfunding inmobiliario: ladrillo entre muchos</span></a></li>
+        <li><a href="#cap18"><span class="pn">18</span><span>Inmobiliario directo: rentabilidad real y apalancamiento</span></a></li>
+        <li><a href="#cap19"><span class="pn">19</span><span>Private equity y capital riesgo</span></a></li>
+        <li><a href="#cap20"><span class="pn">20</span><span>Cripto a fondo: tecnología, volatilidad y custodia</span></a></li>
       </ol>
     </nav>
   </div>
@@ -915,6 +964,473 @@
   </div>
 </section>
 
+<!-- ================= FASE 2 ================= -->
+<div class="module"><div class="wrap">
+  <div class="m-eye">Fase 2 · Nivel avanzado</div>
+  <h2>Profundiza en las inversiones</h2>
+  <p>Ya tienes la base. Aquí abrimos el capó de cada producto de inversión: cómo funciona por dentro, sus riesgos reales, ejemplos con números y libros para seguir. No hace falta invertir en todo esto: se trata de <b>entenderlo</b> para decidir con criterio.</p>
+  <div class="m-line"></div>
+</div></div>
+
+<!-- CAP 12 -->
+<section class="chapter" id="cap12">
+  <div class="wrap">
+    <div class="chapter-head"><span class="chapter-no">12</span><span class="eyebrow">La base de la inversión pasiva</span></div>
+    <h2>Fondos indexados a fondo</h2>
+    <p class="sub">Ya sabes qué son. Ahora, por qué se han vuelto la opción favorita de tanta gente sensata.</p>
+
+    <p>Un fondo indexado no intenta ser listo: se limita a <b>copiar un índice</b>. Un índice es una lista de empresas que mide cómo va un trozo del mercado: el IBEX 35 (las 35 mayores de España), el S&P 500 (las 500 mayores de EE. UU.) o el MSCI World (unas 1.500 grandes de todo el mundo desarrollado). El fondo compra esas mismas empresas en la misma proporción, y así tu dinero sube o baja con el conjunto.</p>
+
+    <div class="concept">
+      <span class="c-word">Concepto clave</span>
+      <p><b>Comisión de gestión (TER):</b> lo que te cobra el fondo cada año por gestionarlo, en % de tu dinero. En un indexado suele ser bajísima (0,1 %–0,3 %). Parece poco, pero como se resta <b>todos los años</b>, a largo plazo importa muchísimo (lo verás en el capítulo siguiente).</p>
+    </div>
+
+    <p>Tres razones por las que gustan tanto: <b>(1)</b> diversificas en cientos de empresas de golpe; <b>(2)</b> pagas comisiones mínimas; <b>(3)</b> no dependes de que un gestor acierte. Y en España tienen una ventaja extra muy potente:</p>
+
+    <div class="callout">
+      <h4>La ventaja fiscal española: los traspasos</h4>
+      <p style="margin:0; color:var(--ink-soft);">En España puedes mover tu dinero de un <b>fondo de inversión</b> a otro (un traspaso) <b>sin pagar impuestos</b> por las ganancias hasta que finalmente lo retiras. Eso deja que el interés compuesto trabaje sobre el total, sin que Hacienda te frene por el camino. Es una razón de peso para usar fondos indexados (no confundir con los ETFs del Cap. 14, que no gozan de esto).</p>
+    </div>
+
+    <div class="reads">
+      <div class="r-label">Lecturas recomendadas</div>
+      <div class="book"><b>El pequeño libro para invertir con sentido común</b> <span class="bk-auth">· John C. Bogle</span><p>El creador del fondo indexado explica, cortito y claro, por qué lo simple y barato gana. El punto de partida ideal.</p></div>
+      <div class="book"><b>Un paseo aleatorio por Wall Street</b> <span class="bk-auth">· Burton Malkiel</span><p>Un clásico que demuestra por qué es tan difícil "ganarle" al mercado y por qué indexarse tiene tanto sentido.</p></div>
+    </div>
+
+    <div class="quiz" data-answer="1">
+      <span class="q-tag">Prueba de comprensión</span>
+      <p class="q">¿Qué hace exactamente un fondo indexado del S&P 500?</p>
+      <div class="opts">
+        <button class="opt">Un gestor elige cada mes las mejores empresas de EE. UU.</button>
+        <button class="opt">Copia el índice: compra las 500 mayores empresas de EE. UU. en su proporción, sin intentar adivinar cuáles subirán.</button>
+        <button class="opt">Invierte solo en la empresa más grande del momento.</button>
+      </div>
+      <div class="fb" data-ok="Exacto. No adivina nada: replica el índice entero. Por eso es barato (no paga a un equipo que elija) y diversificado (llevas las 500 a la vez)." data-no="La gracia del indexado es que NO elige: copia el índice completo. Si el S&P 500 tiene 500 empresas, las lleva todas en su proporción."></div>
+    </div>
+  </div>
+</section>
+
+<!-- CAP 13 -->
+<section class="chapter" id="cap13">
+  <div class="wrap">
+    <div class="chapter-head"><span class="chapter-no">13</span><span class="eyebrow">El rival caro</span></div>
+    <h2>Fondos de gestión activa y la trampa de las comisiones</h2>
+    <p class="sub">Aquí sí hay un experto eligiendo. Suena mejor… pero los números cuentan otra historia.</p>
+
+    <p>Un <b>fondo de gestión activa</b> tiene un gestor (y un equipo) que estudia el mercado e intenta <b>batir al índice</b>: elegir las empresas que más subirán y evitar las que caerán. A cambio de ese trabajo, cobran comisiones mucho más altas (a menudo 1,5 %–2 % al año, frente al 0,2 % de un indexado).</p>
+
+    <p>El problema es doble: primero, la mayoría <b>no consigue</b> batir al índice de forma consistente durante muchos años (los estudios lo repiten una y otra vez). Y segundo, aunque la rentabilidad bruta fuese parecida, la comisión alta te va comiendo el interés compuesto. Mira la diferencia:</p>
+
+    <div class="example">
+      <span class="e-tag">Ejemplo con números</span>
+      <h4>10.000 € durante 30 años, con un 6 % anual bruto</h4>
+      <table>
+        <tr><td>Fondo indexado (comisión 0,2 %) → 5,8 % neto</td><td>≈ 54.000 €</td></tr>
+        <tr><td>Fondo activo (comisión 1,8 %) → 4,2 % neto</td><td>≈ 34.000 €</td></tr>
+        <tr><td>Se ha quedado por el camino (solo en comisiones)</td><td>≈ 20.000 €</td></tr>
+      </table>
+      <p class="e-note">Misma rentabilidad de partida; solo cambia la comisión. Esos ~20.000 € de diferencia son el interés compuesto trabajando… para el gestor en lugar de para ti. Por eso la comisión es lo primero que hay que mirar.</p>
+    </div>
+
+    <div class="callout">
+      <h4>¿Entonces la gestión activa nunca sirve?</h4>
+      <p style="margin:0; color:var(--ink-soft);">No es blanco o negro. Hay gestores excelentes y estrategias que tienen sentido en ciertos casos. Pero <b>encontrar de antemano</b> al que va a ganar, y que además no te cobre de más, es muy difícil. Para quien empieza, la opción por defecto sensata sigue siendo lo barato y diversificado.</p>
+    </div>
+
+    <div class="reads">
+      <div class="r-label">Lecturas recomendadas</div>
+      <div class="book"><b>El inversor inteligente</b> <span class="bk-auth">· Benjamin Graham</span><p>La biblia de la inversión con cabeza (el maestro de Warren Buffett). Denso, pero enseña a pensar en valor y no en modas. Para cuando quieras profundizar de verdad.</p></div>
+    </div>
+
+    <div class="quiz" data-answer="0">
+      <span class="q-tag">Prueba de comprensión</span>
+      <p class="q">Dos fondos logran el mismo 6 % bruto, pero uno cobra 0,2 % y otro 1,8 %. ¿Qué pasa a 30 años?</p>
+      <div class="opts">
+        <button class="opt">El de comisión baja acaba con bastante más dinero: la comisión alta se come el interés compuesto año tras año.</button>
+        <button class="opt">Acaban igual, porque la rentabilidad bruta es la misma.</button>
+        <button class="opt">El de comisión alta gana, porque un experto siempre lo hace mejor.</button>
+      </div>
+      <div class="fb" data-ok="Correcto. Con la misma rentabilidad de partida, la comisión es la que decide. Un 1,6 % extra cada año, durante 30 años, son miles de euros que no llegan a tu bolsillo." data-no="Fíjate en el ejemplo: misma rentabilidad bruta, pero la comisión se resta CADA año. A 30 años eso son ~20.000 € de diferencia. La comisión baja gana."></div>
+    </div>
+  </div>
+</section>
+
+<!-- CAP 14 -->
+<section class="chapter" id="cap14">
+  <div class="wrap">
+    <div class="chapter-head"><span class="chapter-no">14</span><span class="eyebrow">El primo que cotiza</span></div>
+    <h2>ETFs: el fondo que cotiza en bolsa</h2>
+    <p class="sub">Un fondo indexado y un ETF se parecen mucho. La diferencia está en cómo se compran y en los impuestos.</p>
+
+    <div class="concept">
+      <span class="c-word">Concepto clave</span>
+      <p><b>ETF</b> (del inglés <i>Exchange-Traded Fund</i>, "fondo cotizado"): un fondo que se compra y se vende <b>en la bolsa</b>, como si fuera una acción, con su precio cambiando en tiempo real durante el día. La mayoría de ETFs también son indexados (replican un índice) y con comisiones bajas.</p>
+    </div>
+
+    <p>Entonces, ¿fondo indexado o ETF? Se parecen en lo esencial (baratos y diversificados), pero:</p>
+    <ul class="clean">
+      <li><b>El ETF</b> se compra al instante en bolsa a un precio concreto; útil si quieres control fino. Pero en España, al venderlo, tributas por la ganancia <b>aunque quieras cambiarte a otro</b>.</li>
+      <li><b>El fondo indexado</b> se mueve una vez al día, pero permite <b>traspasos sin pagar impuestos</b> (la ventaja del Cap. 12).</li>
+    </ul>
+
+    <div class="callout">
+      <h4>Idea sencilla para recordarlo</h4>
+      <p style="margin:0; color:var(--ink-soft);">ETF = fondo indexado <b>que cotiza como una acción</b>. Para invertir a muy largo plazo desde España, el fondo indexado suele salir a cuenta por los traspasos; el ETF brilla por su flexibilidad y su enorme variedad (los hay de casi cualquier mercado, sector o país).</p>
+    </div>
+
+    <div class="reads">
+      <div class="r-label">Lecturas recomendadas</div>
+      <div class="book"><b>Los cuatro pilares de la inversión</b> <span class="bk-auth">· William Bernstein</span><p>Explica cómo construir una cartera diversificada con fondos y ETFs, y por qué el largo plazo lo cambia todo.</p></div>
+    </div>
+
+    <div class="quiz" data-answer="2">
+      <span class="q-tag">Prueba de comprensión</span>
+      <p class="q">¿Cuál es la diferencia principal entre un ETF y un fondo indexado tradicional?</p>
+      <div class="opts">
+        <button class="opt">El ETF nunca puede ser indexado.</button>
+        <button class="opt">El fondo indexado es siempre más arriesgado.</button>
+        <button class="opt">El ETF cotiza en bolsa (se compra/vende al momento como una acción); el fondo indexado se mueve una vez al día pero permite traspasos sin tributar.</button>
+      </div>
+      <div class="fb" data-ok="Eso es. Los dos pueden replicar el mismo índice y ser baratos; cambia el 'cómo' se negocian y la fiscalidad de los traspasos en España." data-no="Ambos pueden ser indexados y baratos; no es cuestión de riesgo. La diferencia es que el ETF cotiza en bolsa en tiempo real y el fondo indexado permite traspasos sin impuestos."></div>
+    </div>
+  </div>
+</section>
+
+<!-- CAP 15 -->
+<section class="chapter" id="cap15">
+  <div class="wrap">
+    <div class="chapter-head"><span class="chapter-no">15</span><span class="eyebrow">Materias primas</span></div>
+    <h2>ETCs: oro y materias primas cotizadas</h2>
+    <p class="sub">¿Y si quieres exponerte al oro o al petróleo sin guardar lingotes ni barriles en casa? Para eso están los ETCs.</p>
+
+    <div class="concept">
+      <span class="c-word">Concepto clave</span>
+      <p><b>ETC</b> (<i>Exchange-Traded Commodity</i>, "materia prima cotizada"): un producto que cotiza en bolsa como un ETF, pero cuyo valor sigue el precio de una <b>materia prima</b> (oro, plata, petróleo…). Te permite invertir en oro comprando y vendiendo con un clic, sin custodiar el metal.</p>
+    </div>
+
+    <p>Ojo a dos diferencias importantes frente a un fondo de acciones:</p>
+    <ul class="clean">
+      <li><b>No genera nada por sí mismo.</b> Una empresa fabrica y vende; el oro solo "está ahí". No paga intereses ni dividendos: solo vale lo que otro esté dispuesto a pagar por él. Su papel suele ser <b>refugio</b> y diversificación, no crecer sin parar.</li>
+      <li><b>Riesgo del emisor.</b> Técnicamente un ETC suele ser una especie de "pagaré" respaldado por la materia prima; si la entidad que lo emite quiebra, hay un riesgo extra que un fondo tradicional no tiene.</li>
+    </ul>
+
+    <div class="callout warn">
+      <h4>El oro no es una máquina de interés compuesto</h4>
+      <p style="margin:0; color:var(--ink-soft);">Mucha gente cree que el oro "siempre sube". A largo plazo suele proteger frente a la inflación, pero no produce flujo de caja como las empresas. Suele usarse como una <b>pequeña parte</b> de la cartera para dar estabilidad, no como el motor principal de crecimiento.</p>
+    </div>
+
+    <div class="reads">
+      <div class="r-label">Lecturas recomendadas</div>
+      <div class="book"><b>Los cuatro pilares de la inversión</b> <span class="bk-auth">· William Bernstein</span><p>Dedica buenas páginas a cómo encajan el oro y las materias primas dentro de una cartera equilibrada, sin exagerar su papel.</p></div>
+    </div>
+
+    <div class="quiz" data-answer="1">
+      <span class="q-tag">Prueba de comprensión</span>
+      <p class="q">¿En qué se diferencia el oro (vía ETC) de comprar acciones de empresas?</p>
+      <div class="opts">
+        <button class="opt">El oro paga más dividendos que las empresas.</button>
+        <button class="opt">El oro no genera nada por sí mismo (ni intereses ni dividendos): solo vale lo que otro pague por él. Suele ser refugio, no motor de crecimiento.</button>
+        <button class="opt">El oro no tiene ningún riesgo.</button>
+      </div>
+      <div class="fb" data-ok="Correcto. Una empresa produce valor; el oro solo 'está'. Por eso encaja como pequeña parte estabilizadora, no como el motor que hace crecer tu dinero a largo plazo." data-no="Al revés de lo que parece: el oro NO reparte dividendos ni intereses (una empresa sí produce). Vale lo que otro pague, y tiene riesgos. Su papel típico es de refugio, no de motor."></div>
+    </div>
+  </div>
+</section>
+
+<!-- CAP 16 -->
+<section class="chapter" id="cap16">
+  <div class="wrap">
+    <div class="chapter-head"><span class="chapter-no">16</span><span class="eyebrow">Convertirte en el banco</span></div>
+    <h2>Crowdlending: prestar tu dinero con intereses</h2>
+    <p class="sub">En vez de que el banco preste y se lleve los intereses… prestas tú y te los llevas tú. Con su letra pequeña.</p>
+
+    <div class="concept">
+      <span class="c-word">Concepto clave</span>
+      <p><b>Crowdlending:</b> a través de una plataforma en internet, tu dinero se presta a personas o empresas que necesitan un préstamo, y ellos te devuelven el dinero <b>más un interés</b>. Es como hacer de banco a pequeña escala, junto a otros muchos inversores.</p>
+    </div>
+
+    <p>La rentabilidad que anuncian suele ser atractiva (a menudo 5 %–10 %), pero el riesgo es real y hay que entenderlo:</p>
+    <ul class="clean">
+      <li><b>Impago (morosidad):</b> quien pidió el préstamo puede no devolverlo. Ese dinero lo pierdes.</li>
+      <li><b>Iliquidez:</b> tu dinero queda "atado" hasta que se devuelve el préstamo; no lo recuperas cuando quieras.</li>
+      <li><b>Riesgo de plataforma:</b> si la web quiebra o es un fraude, puede complicarse mucho recuperar lo tuyo.</li>
+    </ul>
+
+    <div class="example">
+      <span class="e-tag">Ejemplo con números</span>
+      <h4>Por qué se reparte en muchos préstamos</h4>
+      <table>
+        <tr><td>Prestas 50 € a UNA sola persona al 9 %… y no paga</td><td>−50 € (pierdes todo)</td></tr>
+        <tr><td>Reparte 50 € en 100 préstamos; el 9 % que anuncian…</td><td>+9 % teórico</td></tr>
+        <tr><td>…pero si un 4 % impaga, tu rentabilidad real baja a…</td><td>≈ 5 % real</td></tr>
+      </table>
+      <p class="e-note">La lección: <b>diversificar</b> también aquí. Un impago sobre un único préstamo es una catástrofe; sobre 100 préstamos, es un bache asumible. La morosidad convierte el "9 %" del cartel en un número más bajo y menos seguro.</p>
+    </div>
+
+    <div class="reads">
+      <div class="r-label">Lecturas recomendadas</div>
+      <div class="book"><b>La psicología del dinero</b> <span class="bk-auth">· Morgan Housel</span><p>Antes de perseguir rentabilidades altas, este libro te enseña a pensar en el riesgo y en no arruinarte por avaricia. Perfecto justo antes de tocar productos así.</p></div>
+    </div>
+
+    <div class="quiz" data-answer="2">
+      <span class="q-tag">Prueba de comprensión</span>
+      <p class="q">Una plataforma de crowdlending anuncia un 9 %. ¿Qué es lo más sensato tener en cuenta?</p>
+      <div class="opts">
+        <button class="opt">Que ese 9 % es fijo y seguro, como una cuenta del banco.</button>
+        <button class="opt">Que conviene meter todo en el préstamo con más interés.</button>
+        <button class="opt">Que hay riesgo de impago e iliquidez: ese 9 % es teórico y conviene repartir en muchos préstamos para que un impago no te hunda.</button>
+      </div>
+      <div class="fb" data-ok="Eso es. El interés anunciado no está garantizado: los impagos lo reducen. Diversificar en muchos préstamos pequeños es la defensa básica, y aun así es un producto de riesgo." data-no="Cuidado: ese 9 % NO es como una cuenta del banco. Hay impagos e iliquidez, así que es teórico. Lo prudente es repartir en muchos préstamos, no concentrar en el de más interés."></div>
+    </div>
+  </div>
+</section>
+
+<!-- CAP 17 -->
+<section class="chapter" id="cap17">
+  <div class="wrap">
+    <div class="chapter-head"><span class="chapter-no">17</span><span class="eyebrow">Ladrillo compartido</span></div>
+    <h2>Crowdfunding inmobiliario: ladrillo entre muchos</h2>
+    <p class="sub">Comprar un piso cuesta mucho dinero. ¿Y si muchos ponéis un poquito cada uno y os repartís el resultado?</p>
+
+    <div class="concept">
+      <span class="c-word">Concepto clave</span>
+      <p><b>Crowdfunding inmobiliario:</b> muchos pequeños inversores ponen dinero (a veces desde unos pocos cientos de euros) para financiar un proyecto inmobiliario —comprar y alquilar, o reformar y vender— y se reparten las ganancias en proporción a lo aportado.</p>
+    </div>
+
+    <p>Te permite entrar en el inmobiliario sin necesitar los 100.000 € que cuesta un piso. Pero no es "ladrillo mágico sin riesgo":</p>
+    <ul class="clean">
+      <li><b>Iliquidez:</b> tu dinero queda atado meses o años, hasta que el proyecto termina. No es como vender un fondo en un día.</li>
+      <li><b>Riesgo del proyecto:</b> si la obra se retrasa, se encarece o el piso no se vende/alquila como se esperaba, ganas menos… o pierdes.</li>
+      <li><b>Riesgo de la plataforma y del promotor:</b> dependes de que quien gestiona el proyecto lo haga bien y sea serio.</li>
+    </ul>
+
+    <div class="example">
+      <span class="e-tag">Ejemplo con números</span>
+      <h4>1.000 € en un proyecto a 18 meses</h4>
+      <table>
+        <tr><td>Rentabilidad anunciada</td><td>10 % anual</td></tr>
+        <tr><td>Si sale bien (18 meses = 1,5 años)</td><td>≈ +150 €</td></tr>
+        <tr><td>Mientras tanto, tu dinero está…</td><td>atado, no disponible</td></tr>
+      </table>
+      <p class="e-note">Ese +150 € es el <b>mejor</b> escenario. Si el proyecto se tuerce, la cifra baja o desaparece, y no puedes "salir corriendo" a mitad. Por eso solo se pone dinero que no vayas a necesitar en ese plazo.</p>
+    </div>
+
+    <div class="reads">
+      <div class="r-label">Lecturas recomendadas</div>
+      <div class="book"><b>Padre Rico, Padre Pobre</b> <span class="bk-auth">· Robert Kiyosaki</span><p>Muy famoso para cambiar la mentalidad sobre activos que generan ingresos (como el inmobiliario). Léelo con espíritu crítico: motiva mucho, pero no es un manual de instrucciones.</p></div>
+    </div>
+
+    <div class="quiz" data-answer="0">
+      <span class="q-tag">Prueba de comprensión</span>
+      <p class="q">¿Cuál es una diferencia clave entre el crowdfunding inmobiliario y un fondo indexado?</p>
+      <div class="opts">
+        <button class="opt">En el crowdfunding inmobiliario tu dinero queda atado (iliquidez) hasta que acaba el proyecto; el fondo lo puedes vender casi cuando quieras.</button>
+        <button class="opt">El crowdfunding inmobiliario no tiene ningún riesgo.</button>
+        <button class="opt">El fondo indexado necesita 100.000 € para empezar.</button>
+      </div>
+      <div class="fb" data-ok="Correcto. La gran diferencia es la liquidez: en el crowdfunding tu dinero está comprometido meses o años; un fondo se vende en un día. Y sí tiene riesgo (proyecto, plataforma)." data-no="La clave es la liquidez: en el crowdfunding tu dinero queda atado hasta que el proyecto termina, mientras que un fondo indexado se vende casi cuando quieras. Y sí conlleva riesgos."></div>
+    </div>
+  </div>
+</section>
+
+<!-- CAP 18 -->
+<section class="chapter" id="cap18">
+  <div class="wrap">
+    <div class="chapter-head"><span class="chapter-no">18</span><span class="eyebrow">El ladrillo de siempre</span></div>
+    <h2>Inmobiliario directo: rentabilidad real y apalancamiento</h2>
+    <p class="sub">Comprar una vivienda para alquilarla es la inversión "de toda la vida". Vamos a mirarla con lupa y con números.</p>
+
+    <p>La idea es sencilla: compras una vivienda, la alquilas, y cobras una renta cada mes. Además, con suerte, el piso <b>se revaloriza</b> (vale más con los años). Pero hay una trampa muy común: confundir la rentabilidad <b>bruta</b> con la <b>neta</b>.</p>
+
+    <div class="concept">
+      <span class="c-word">Concepto clave</span>
+      <p><b>Rentabilidad bruta:</b> el alquiler anual dividido entre lo que costó, sin descontar gastos. <b>Rentabilidad neta:</b> lo mismo, pero <b>después</b> de restar todos los gastos (impuestos, comunidad, seguros, reparaciones, meses sin inquilino…). La neta es la que de verdad te llevas.</p>
+    </div>
+
+    <div class="example">
+      <span class="e-tag">Ejemplo con números</span>
+      <h4>Un piso de 120.000 € alquilado a 650 €/mes</h4>
+      <table>
+        <tr><td>Alquiler al año (650 × 12)</td><td>7.800 €</td></tr>
+        <tr><td>Rentabilidad BRUTA (7.800 / 120.000)</td><td>6,5 %</td></tr>
+        <tr><td>− Gastos anuales (IBI, comunidad, seguro, reparaciones, 1 mes vacío…)</td><td>≈ −2.500 €</td></tr>
+        <tr><td>Renta NETA real (5.300 / 120.000)</td><td>≈ 4,4 %</td></tr>
+      </table>
+      <p class="e-note">Del atractivo 6,5 % del anuncio, lo que de verdad queda es ~4,4 %. Ni bueno ni malo: el punto es <b>no engañarse</b> con la cifra bruta.</p>
+    </div>
+
+    <div class="concept">
+      <span class="c-word">Concepto clave</span>
+      <p><b>Apalancamiento:</b> usar una hipoteca (dinero prestado) para comprar. Multiplica las ganancias <b>si todo va bien</b>… pero también multiplica las pérdidas si va mal. Es una palanca: hace más fuerza en los dos sentidos. Poderoso y peligroso a partes iguales.</p>
+    </div>
+
+    <p>Otros puntos a tener en cuenta: hace falta <b>mucho dinero de entrada</b>, es muy <b>poco líquido</b> (vender tarda meses) y da <b>trabajo</b> (inquilinos, averías, papeleo). No es dinero pasivo del todo.</p>
+
+    <div class="reads">
+      <div class="r-label">Lecturas recomendadas</div>
+      <div class="book"><b>El inversor de inmuebles millonario</b> <span class="bk-auth">· Gary Keller</span><p>(<i>The Millionaire Real Estate Investor</i>) Un enfoque ordenado y con números sobre cómo invertir en vivienda de verdad, más allá de la intuición.</p></div>
+    </div>
+
+    <div class="quiz" data-answer="1">
+      <span class="q-tag">Prueba de comprensión</span>
+      <p class="q">Un anuncio promete un 6,5 % de rentabilidad por alquilar un piso. ¿Qué deberías comprobar?</p>
+      <div class="opts">
+        <button class="opt">Nada, el 6,5 % es lo que te llevas seguro.</button>
+        <button class="opt">Que ese 6,5 % es la rentabilidad BRUTA: tras restar impuestos, comunidad, seguros, reparaciones y meses vacíos, la NETA real será bastante menor.</button>
+        <button class="opt">Que con hipoteca no hay ningún riesgo.</button>
+      </div>
+      <div class="fb" data-ok="Correcto. El número del anuncio casi siempre es el bruto. Los gastos (IBI, comunidad, averías, vacíos…) recortan bastante, y la hipoteca añade riesgo. Mira siempre la neta." data-no="Ese 6,5 % es el BRUTO. Lo que de verdad te llevas es la rentabilidad NETA, después de impuestos, comunidad, seguros, reparaciones y meses sin inquilino. Y la hipoteca sí añade riesgo."></div>
+    </div>
+  </div>
+</section>
+
+<!-- CAP 19 -->
+<section class="chapter" id="cap19">
+  <div class="wrap">
+    <div class="chapter-head"><span class="chapter-no">19</span><span class="eyebrow">Las grandes ligas</span></div>
+    <h2>Private equity y capital riesgo</h2>
+    <p class="sub">Invertir en empresas que NO cotizan en bolsa. Potencial enorme, riesgo enorme, y casi siempre fuera del alcance del pequeño ahorrador.</p>
+
+    <div class="concept">
+      <span class="c-word">Concepto clave</span>
+      <p><b>Private equity</b> ("capital privado"): invertir en empresas que <b>no</b> están en bolsa. Cuando se trata de empresas jóvenes y prometedoras (startups) se llama <b>capital riesgo</b> o <i>venture capital</i>. Como no cotizan, no puedes comprar o vender con un clic.</p>
+    </div>
+
+    <p>Es el terreno de los grandes inversores por tres motivos que conviene entender:</p>
+    <ul class="clean">
+      <li><b>Iliquidez extrema:</b> tu dinero puede quedar bloqueado <b>años</b> (5, 7, 10) sin poder recuperarlo.</li>
+      <li><b>Riesgo altísimo:</b> muchas de estas empresas fracasan por completo. Puedes perderlo todo en varias de ellas.</li>
+      <li><b>Entrada muy alta:</b> suele exigir decenas o cientos de miles de euros, y a menudo está reservado a <b>inversores profesionales</b> (los llamados "acreditados").</li>
+    </ul>
+
+    <div class="example">
+      <span class="e-tag">Ejemplo con números</span>
+      <h4>Cómo gana dinero un fondo de capital riesgo (la "ley de las potencias")</h4>
+      <table>
+        <tr><td>Invierte en 10 startups. Fracasan por completo…</td><td>≈ 6</td></tr>
+        <tr><td>Devuelven más o menos lo puesto…</td><td>≈ 3</td></tr>
+        <tr><td>Se convierte en un "pelotazo" (x30 o más)…</td><td>1</td></tr>
+      </table>
+      <p class="e-note">La magia es rara: esa <b>única</b> ganadora puede pagar todas las pérdidas y aun así dar beneficio. Pero acertar cuál será exige experiencia, contactos y aguante. No es un juego para principiantes ni para dinero que necesites.</p>
+    </div>
+
+    <div class="reads">
+      <div class="r-label">Lecturas recomendadas</div>
+      <div class="book"><b>De cero a uno</b> <span class="bk-auth">· Peter Thiel</span><p>(<i>Zero to One</i>) Cómo piensan quienes crean e invierten en startups que valen millones. Ayuda a entender por qué el capital riesgo funciona como funciona.</p></div>
+    </div>
+
+    <div class="quiz" data-answer="2">
+      <span class="q-tag">Prueba de comprensión</span>
+      <p class="q">¿Por qué el private equity / capital riesgo no es apto para casi ningún principiante?</p>
+      <div class="opts">
+        <button class="opt">Porque da rentabilidades bajas y aburridas.</button>
+        <button class="opt">Porque es demasiado fácil y no tiene emoción.</button>
+        <button class="opt">Porque es muy ilíquido (dinero bloqueado años), de riesgo altísimo (muchas empresas fracasan) y exige entradas muy grandes, normalmente para inversores profesionales.</button>
+      </div>
+      <div class="fb" data-ok="Exacto. Iliquidez de años, riesgo de perderlo todo y mínimos altísimos: por eso es cosa de grandes inversores. Entenderlo está bien; participar, casi nunca es para quien empieza." data-no="Justo lo contrario a 'bajo y aburrido': es de riesgo altísimo, con el dinero bloqueado años y entradas enormes reservadas a profesionales. Por eso no es para principiantes."></div>
+    </div>
+  </div>
+</section>
+
+<!-- CAP 20 -->
+<section class="chapter" id="cap20">
+  <div class="wrap">
+    <div class="chapter-head"><span class="chapter-no">20</span><span class="eyebrow">La frontera salvaje</span></div>
+    <h2>Cripto a fondo: tecnología, volatilidad y custodia</h2>
+    <p class="sub">Ya la viste por encima. Ahora, con más detalle y con la cabeza fría, porque es el terreno con más humo y más estafas.</p>
+
+    <div class="concept">
+      <span class="c-word">Concepto clave</span>
+      <p><b>Blockchain:</b> una especie de libro de cuentas digital, compartido entre miles de ordenadores, donde se apuntan las operaciones sin que mande un único banco central. Las <b>criptomonedas</b> (como Bitcoin) viven sobre esa tecnología: son dinero digital que no controla ningún país.</p>
+    </div>
+
+    <p>La tecnología es genuinamente interesante. Pero como <b>inversión</b>, hay que tener claras varias cosas:</p>
+    <ul class="clean">
+      <li><b>Volatilidad brutal:</b> puede subir o bajar un 50 % en semanas. Bitcoin ha caído más de un 70 % en varias ocasiones (2018, 2022) antes de recuperarse. No apto para nervios débiles.</li>
+      <li><b>No genera flujo de caja:</b> como el oro, una cripto no produce nada por sí misma. Vale exactamente lo que el próximo esté dispuesto a pagar. Su precio es pura oferta y demanda.</li>
+      <li><b>Miles de monedas, casi todas humo:</b> Bitcoin es la más conocida, pero hay miles de "altcoins", muchas creadas para especular o directamente estafar.</li>
+      <li><b>Custodia:</b> "not your keys, not your coins". Si guardas tus criptos en una web y esa web quiebra o te hackean, puedes perderlo todo. Ser tu propio banco tiene su responsabilidad.</li>
+    </ul>
+
+    <div class="callout warn">
+      <h4>La regla de oro con cripto</h4>
+      <p style="margin:0; color:var(--ink-soft);">Si entras, que sea con una <b>porción pequeña</b> de tu dinero (por ejemplo, hasta un 5 %) y solo con lo que puedas permitirte perder por completo, <b>después</b> de tener colchón y una base tranquila con fondos indexados. Y desconfía de todo el que prometa ganancias seguras: en cripto, la mayoría de "gurús" cobran por hacerte comprar.</p>
+    </div>
+
+    <div class="reads">
+      <div class="r-label">Lecturas recomendadas</div>
+      <div class="book"><b>El patrón Bitcoin</b> <span class="bk-auth">· Saifedean Ammous</span><p>La visión <b>a favor</b> de Bitcoin, bien argumentada. Léela sabiendo que es muy entusiasta: busca también opiniones críticas para formarte tu propia idea.</p></div>
+      <div class="book"><b>La psicología del dinero</b> <span class="bk-auth">· Morgan Housel</span><p>El mejor antídoto contra la avaricia y el miedo que la cripto dispara. Te prepara para no perder la cabeza con algo tan volátil.</p></div>
+    </div>
+
+    <div class="quiz" data-answer="0">
+      <span class="q-tag">Prueba de comprensión</span>
+      <p class="q">¿Cuál de estas afirmaciones sobre las criptomonedas es la más correcta y prudente?</p>
+      <div class="opts">
+        <button class="opt">Son muy volátiles y no generan flujo de caja por sí mismas; si inviertes, mejor una porción pequeña que puedas permitirte perder.</button>
+        <button class="opt">Son una forma segura de duplicar tu dinero rápido.</button>
+        <button class="opt">Como no las controla ningún banco, no tienen ningún riesgo.</button>
+      </div>
+      <div class="fb" data-ok="Eso es. Tecnología interesante, pero como inversión es muy volátil y especulativa. La postura sensata: porción pequeña, dinero que puedas perder, y mucha desconfianza ante las promesas." data-no="Nada de 'seguro' ni 'sin riesgo': la cripto es de las cosas más volátiles que existen y no genera flujo de caja. Lo prudente es una porción pequeña con dinero que puedas permitirte perder."></div>
+    </div>
+  </div>
+</section>
+
+<!-- Mapa comparativo -->
+<section class="chapter" id="mapa">
+  <div class="wrap">
+    <div class="chapter-head"><span class="chapter-no">✦</span><span class="eyebrow">Visión de conjunto</span></div>
+    <h2>El mapa de las inversiones</h2>
+    <p class="sub">Todo lo de la Fase 2 en una sola tabla, para comparar de un vistazo. No hay una "mejor": depende de tu objetivo, tu plazo y el riesgo que aguantes.</p>
+
+    <div class="compare-wrap">
+      <table class="compare">
+        <thead>
+          <tr><th>Producto</th><th>Riesgo</th><th>Liquidez</th><th>Entrada mínima</th><th>Horizonte típico</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Fondos indexados</td><td><span class="pill mid">Medio</span></td><td><span class="pill low">Alta</span></td><td>Muy baja</td><td>Largo plazo (años)</td></tr>
+          <tr><td>Fondos activos</td><td><span class="pill mid">Medio</span></td><td><span class="pill low">Alta</span></td><td>Baja</td><td>Largo plazo</td></tr>
+          <tr><td>ETFs</td><td><span class="pill mid">Medio</span></td><td><span class="pill low">Alta</span></td><td>Baja</td><td>Medio-largo</td></tr>
+          <tr><td>ETCs (oro, materias primas)</td><td><span class="pill mid">Medio</span></td><td><span class="pill low">Alta</span></td><td>Baja</td><td>Diversificar / refugio</td></tr>
+          <tr><td>Crowdlending</td><td><span class="pill high">Alto</span></td><td><span class="pill high">Baja</span></td><td>Baja</td><td>Corto-medio</td></tr>
+          <tr><td>Crowdfunding inmobiliario</td><td><span class="pill high">Alto</span></td><td><span class="pill high">Baja</span></td><td>Media</td><td>Medio (meses-años)</td></tr>
+          <tr><td>Inmobiliario directo</td><td><span class="pill mid">Medio</span></td><td><span class="pill high">Muy baja</span></td><td>Muy alta</td><td>Largo plazo</td></tr>
+          <tr><td>Private equity / capital riesgo</td><td><span class="pill high">Muy alto</span></td><td><span class="pill high">Nula (años)</span></td><td>Altísima</td><td>Muy largo (5-10 años)</td></tr>
+          <tr><td>Criptomonedas</td><td><span class="pill high">Muy alto</span></td><td><span class="pill low">Alta</span></td><td>Muy baja</td><td>Especulativo</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:.85rem; color:var(--ink-soft);">Valores orientativos y simplificados para comparar, no una recomendación. "Liquidez alta" = fácil de convertir en dinero; "baja/nula" = tu dinero queda atado. Fíjate en el patrón: casi siempre, <b>más rentabilidad esperada viene con más riesgo o menos liquidez</b>.</p>
+
+    <div class="note">
+      <span class="who">Regla que resume toda la Fase 2</span>
+      <p>Entiende primero, invierte después. Lo que no sabes explicar con tus palabras, todavía no deberías comprarlo.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Biblioteca -->
+<section class="chapter" id="biblioteca">
+  <div class="wrap">
+    <div class="chapter-head"><span class="chapter-no">📚</span><span class="eyebrow">Tu biblioteca financiera</span></div>
+    <h2>Los libros, todos juntos</h2>
+    <p class="sub">Una ruta de lectura ordenada de más sencillo a más avanzado. No hace falta leerlos todos: con los dos primeros ya vas muy sobrado para empezar.</p>
+
+    <div class="reads">
+      <div class="r-label">De principiante a experto</div>
+      <div class="book"><b>La psicología del dinero</b> <span class="bk-auth">· Morgan Housel · (fácil)</span><p>El mejor primer libro: enseña a comportarse bien con el dinero. Corto y ameno.</p></div>
+      <div class="book"><b>Sí, tú puedes tener finanzas sanas</b> <span class="bk-auth">· Natalia de Santiago · (fácil)</span><p>Finanzas personales en español, claras y sin humo. Ideal para la Fase 1.</p></div>
+      <div class="book"><b>El pequeño libro para invertir con sentido común</b> <span class="bk-auth">· John C. Bogle · (fácil)</span><p>Por qué los fondos indexados, baratos y simples, ganan a largo plazo.</p></div>
+      <div class="book"><b>Un paseo aleatorio por Wall Street</b> <span class="bk-auth">· Burton Malkiel · (intermedio)</span><p>Por qué es tan difícil batir al mercado. Un clásico que da mucha perspectiva.</p></div>
+      <div class="book"><b>Los cuatro pilares de la inversión</b> <span class="bk-auth">· William Bernstein · (intermedio)</span><p>Cómo montar una cartera equilibrada con fondos, ETFs y algo de oro.</p></div>
+      <div class="book"><b>El inversor inteligente</b> <span class="bk-auth">· Benjamin Graham · (avanzado)</span><p>La biblia de invertir con cabeza. Denso, para cuando ya tengas la base.</p></div>
+    </div>
+  </div>
+</section>
+
 <!-- Divulgadores -->
 <section class="chapter" id="divulgadores">
   <div class="wrap">
@@ -957,21 +1473,56 @@
   var prog = document.getElementById('progress');
   window.addEventListener('scroll', function () { var h = document.documentElement; prog.style.width = (h.scrollTop / (h.scrollHeight - h.clientHeight) * 100) + '%'; }, { passive: true });
 
-  /* Quiz engine */
-  document.querySelectorAll('.quiz').forEach(function (q) {
+  /* ---- Quiz engine + progreso por usuario del portal ---- */
+  var quizzes = Array.prototype.slice.call(document.querySelectorAll('.quiz'));
+  var TOTAL = quizzes.length;
+  var solvedSet = {};              // claves acertadas (objeto usado como set)
+  var NS = null;                   // usuario del portal (namespace); null hasta resolver
+  var KEY_PREFIX = 'manualDinero:v1:';
+
+  var qprog = document.getElementById('qprog');
+  var qpFill = document.getElementById('qpFill');
+  var qpTxt = document.getElementById('qpTxt');
+  if (qprog) qprog.setAttribute('aria-valuemax', String(TOTAL));
+
+  function keysArray() { return Object.keys(solvedSet); }
+  function loadFor(ns) { try { return JSON.parse(localStorage.getItem(KEY_PREFIX + ns) || '[]'); } catch (e) { return []; } }
+  function persist() { if (!NS) return; try { localStorage.setItem(KEY_PREFIX + NS, JSON.stringify(keysArray())); } catch (e) {} }
+
+  function updateProgressUI() {
+    var n = 0;
+    quizzes.forEach(function (q) { if (q.dataset.solved === '1') n++; });
+    var pct = TOTAL ? Math.round(n / TOTAL * 100) : 0;
+    if (qpFill) qpFill.style.width = pct + '%';
+    if (qpTxt) qpTxt.textContent = n + '/' + TOTAL;
+    if (qprog) { qprog.classList.toggle('done', TOTAL > 0 && n === TOTAL); qprog.setAttribute('aria-valuenow', String(n)); }
+  }
+
+  function showSolved(q) {
     var answer = parseInt(q.getAttribute('data-answer'), 10);
     var opts = Array.prototype.slice.call(q.querySelectorAll('.opt'));
     var fb = q.querySelector('.fb');
-    var solved = false;
+    opts.forEach(function (o) { o.setAttribute('disabled', 'true'); o.classList.remove('wrong'); });
+    if (opts[answer]) opts[answer].classList.add('correct');
+    fb.textContent = '✓ ' + fb.getAttribute('data-ok');
+    fb.className = 'fb ok show';
+    q.dataset.solved = '1';
+  }
+
+  quizzes.forEach(function (q, i) {
+    var key = q.getAttribute('data-qk') || ('q' + i);
+    q.dataset.qk = key;
+    var answer = parseInt(q.getAttribute('data-answer'), 10);
+    var opts = Array.prototype.slice.call(q.querySelectorAll('.opt'));
+    var fb = q.querySelector('.fb');
     opts.forEach(function (opt, idx) {
       opt.addEventListener('click', function () {
-        if (solved) return;
+        if (q.dataset.solved === '1') return;
         if (idx === answer) {
-          solved = true;
-          opt.classList.add('correct');
-          opts.forEach(function (o) { o.setAttribute('disabled', 'true'); });
-          fb.textContent = '✓ ' + fb.getAttribute('data-ok');
-          fb.className = 'fb ok show';
+          showSolved(q);
+          solvedSet[key] = 1;
+          persist();
+          updateProgressUI();
         } else {
           opt.classList.add('wrong');
           opt.setAttribute('disabled', 'true');
@@ -981,6 +1532,29 @@
       });
     });
   });
+
+  function restoreSolved() {
+    quizzes.forEach(function (q) { if (solvedSet[q.dataset.qk] && q.dataset.solved !== '1') showSolved(q); });
+    updateProgressUI();
+  }
+
+  // Identifica al usuario del portal: la cookie es httpOnly, así que preguntamos
+  // a /auth/verify (mismo origen) y leemos la cabecera X-User. Fuera del portal
+  // (p. ej. vista previa) hace fallback a un perfil local.
+  function resolveUser() {
+    if (!window.fetch) return Promise.resolve('local');
+    return fetch('/auth/verify', { credentials: 'same-origin' })
+      .then(function (r) { return (r && r.ok) ? (r.headers.get('X-User') || 'invitado') : 'invitado'; })
+      .catch(function () { return 'local'; });
+  }
+
+  resolveUser().then(function (user) {
+    NS = user || 'local';
+    loadFor(NS).forEach(function (k) { solvedSet[k] = 1; });
+    restoreSolved();
+    persist();
+  });
+  updateProgressUI();
 
   /* Hero snow */
   var snow = document.getElementById('snow');
