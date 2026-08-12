@@ -163,6 +163,17 @@
   .qprog.done .qp-ico { color: var(--gold-strong); }
   @media (max-width: 540px) { .qprog .qp-lbl { display: none; } }
 
+  /* tabs (dos módulos) */
+  .tabs { position: sticky; top: 52px; z-index: 30; background: color-mix(in srgb, var(--bg) 90%, transparent); backdrop-filter: saturate(140%) blur(8px); border-bottom: 1px solid var(--line); }
+  .tabs-inner { max-width: var(--maxw); margin: 0 auto; padding: 9px 22px; display: flex; gap: 8px; }
+  .tab { flex: 1; font: inherit; font-family: var(--font-mono); font-size: .8rem; letter-spacing: .01em; color: var(--ink-soft); background: var(--surface); border: 1px solid var(--line); border-radius: 11px; padding: 11px 12px; cursor: pointer; text-align: center; transition: color .15s, border-color .15s, background .15s; }
+  .tab:hover { color: var(--ink); border-color: var(--gold); }
+  .tab[aria-selected="true"] { color: var(--ink); border-color: var(--gold); background: color-mix(in srgb, var(--gold) 13%, var(--surface)); font-weight: 600; box-shadow: var(--shadow); }
+  .tab:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+  .tab .tab-k { color: var(--gold-strong); font-weight: 700; }
+  .tabpanel[hidden] { display: none; }
+  @media (max-width: 420px) { .tab { font-size: .74rem; padding: 10px 8px; } }
+
   /* reading recommendations */
   .reads { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 16px 20px; margin: 24px 0; box-shadow: var(--shadow); }
   .reads .r-label { font-family: var(--font-mono); font-size: .7rem; letter-spacing: .14em; text-transform: uppercase; color: var(--gold-strong); display: inline-flex; gap: 8px; align-items: center; margin-bottom: 4px; }
@@ -321,11 +332,31 @@
         <li><a href="#cap19"><span class="pn">19</span><span>Private equity y capital riesgo</span></a></li>
         <li><a href="#cap20"><span class="pn">20</span><span>Cripto a fondo: tecnología, volatilidad y custodia</span></a></li>
       </ol>
+
+      <div class="path-mod">Módulo fiscal · Los impuestos de cada activo</div>
+      <ol>
+        <li><a href="#capF1"><span class="pn">21</span><span>Cómo se pagan impuestos por invertir</span></a></li>
+        <li><a href="#capF2"><span class="pn">22</span><span>Fondos indexados y activos: la joya del traspaso</span></a></li>
+        <li><a href="#capF3"><span class="pn">23</span><span>ETFs y ETCs: plusvalía al vender</span></a></li>
+        <li><a href="#capF4"><span class="pn">24</span><span>Crowdlending y crowdfunding: intereses y dividendos</span></a></li>
+        <li><a href="#capF5"><span class="pn">25</span><span>Inmobiliario: el alquiler va por otro cajón</span></a></li>
+        <li><a href="#capF6"><span class="pn">26</span><span>Private equity y cripto: plusvalías y permutas</span></a></li>
+        <li><a href="#mapafiscal"><span class="pn">✦</span><span>Fiscalidad de un vistazo</span></a></li>
+      </ol>
     </nav>
   </div>
 </header>
 
+<div class="tabs" role="tablist" aria-label="Secciones de la guía">
+  <div class="tabs-inner">
+    <button class="tab" id="tabbtn-base" role="tab" aria-selected="true" aria-controls="tab-base"><span class="tab-k">1</span> · Curso base</button>
+    <button class="tab" id="tabbtn-inv" role="tab" aria-selected="false" aria-controls="tab-inv" tabindex="-1"><span class="tab-k">2</span> · Inversiones y fiscalidad</button>
+  </div>
+</div>
+
 <main>
+
+<div id="tab-base" class="tabpanel" role="tabpanel" aria-labelledby="tabbtn-base">
 
 <!-- ================= MÓDULO A ================= -->
 <div class="module"><div class="wrap">
@@ -964,6 +995,10 @@
   </div>
 </section>
 
+</div><!-- /tab-base -->
+
+<div id="tab-inv" class="tabpanel" role="tabpanel" aria-labelledby="tabbtn-inv" hidden>
+
 <!-- ================= FASE 2 ================= -->
 <div class="module"><div class="wrap">
   <div class="m-eye">Fase 2 · Nivel avanzado</div>
@@ -1431,6 +1466,298 @@
   </div>
 </section>
 
+<!-- ================= MÓDULO FISCAL ================= -->
+<div class="module"><div class="wrap">
+  <div class="m-eye">Módulo fiscal · Hacienda también invierte contigo</div>
+  <h2>La fiscalidad de cada activo</h2>
+  <p>Cuando ganas dinero invirtiendo, una parte va para Hacienda. Entender <b>cuánto</b> y <b>cuándo</b> es clave: a veces cambia por completo qué producto conviene. Aquí ves los impuestos de cada activo de la Fase 2, con ejemplos.</p>
+  <div class="m-line"></div>
+</div></div>
+
+<!-- CAP F1 -->
+<section class="chapter" id="capF1">
+  <div class="wrap">
+    <div class="chapter-head"><span class="chapter-no">21</span><span class="eyebrow">Las reglas del juego</span></div>
+    <h2>Cómo se pagan impuestos por invertir</h2>
+    <p class="sub">Antes de ver cada activo, tres reglas que valen para casi todos. Con esto ya entiendes el 80 %.</p>
+
+    <p>En España, el dinero que ganas se mete en uno de <b>dos cajones</b> distintos del IRPF, y cada cajón paga a un ritmo diferente. Esto es fundamental:</p>
+
+    <div class="concept">
+      <span class="c-word">Concepto clave · Los dos cajones</span>
+      <p><b>Base general:</b> tu sueldo del trabajo y los <b>alquileres</b> que cobras. Paga a tu tipo marginal (los tramos que viste en el Cap. 6, hasta el 45 %+). <b>Base del ahorro:</b> casi todas las inversiones (ganancias por vender, dividendos, intereses). Tiene sus propios tramos, más suaves.</p>
+    </div>
+
+    <p>Los tramos de la <b>base del ahorro</b> (donde cae casi toda la inversión) son estos, y funcionan por cajones igual que el IRPF del sueldo:</p>
+    <div class="taxviz">
+      <div class="taxrow"><span class="tl">0 – 6.000 €</span><span class="tbar"><i style="width:19%"></i></span><span class="tv">19 %</span></div>
+      <div class="taxrow"><span class="tl">6.000 – 50.000</span><span class="tbar"><i style="width:21%"></i></span><span class="tv">21 %</span></div>
+      <div class="taxrow"><span class="tl">50.000 – 200.000</span><span class="tbar"><i style="width:23%"></i></span><span class="tv">23 %</span></div>
+      <div class="taxrow"><span class="tl">200.000 – 300.000</span><span class="tbar"><i style="width:27%"></i></span><span class="tv">27 %</span></div>
+      <div class="taxrow"><span class="tl">Más de 300.000 €</span><span class="tbar"><i style="width:28%"></i></span><span class="tv">28 %</span></div>
+    </div>
+
+    <div class="concept">
+      <span class="c-word">Concepto clave · Solo pagas al "realizar"</span>
+      <p>La regla de oro fiscal: normalmente <b>no pagas por tener</b> una inversión que sube, solo cuando la <b>vendes y cobras la ganancia</b> (se dice "realizar" la ganancia). Si tu fondo sube un 30 % pero no lo vendes, todavía no debes nada. La excepción es el alquiler, que es una renta que cobras cada año.</p>
+    </div>
+
+    <div class="example">
+      <span class="e-tag">Ejemplo con números</span>
+      <h4>Vendes con 10.000 € de ganancia: ¿cuánto paga Hacienda?</h4>
+      <table>
+        <tr><td>Primeros 6.000 € × 19 %</td><td>1.140 €</td></tr>
+        <tr><td>Siguientes 4.000 € × 21 %</td><td>840 €</td></tr>
+        <tr><td>Total de impuestos (base del ahorro)</td><td>1.980 €</td></tr>
+      </table>
+      <p class="e-note">De 10.000 € de ganancia, pagas 1.980 € (un 19,8 % efectivo) y te quedas con 8.020 €. Y recuerda: si otra inversión te dio pérdidas ese año, puedes <b>restarlas</b> de las ganancias y pagar menos.</p>
+    </div>
+
+    <div class="quiz" data-answer="1">
+      <span class="q-tag">Prueba de comprensión</span>
+      <p class="q">Tu fondo ha subido un 25 % este año, pero no has vendido nada. ¿Cuánto pagas a Hacienda por esa subida?</p>
+      <div class="opts">
+        <button class="opt">El 21 % de la subida, ahora mismo.</button>
+        <button class="opt">Nada todavía: solo se paga cuando vendes y "realizas" la ganancia.</button>
+        <button class="opt">Un 45 %, porque las inversiones van en la base general.</button>
+      </div>
+      <div class="fb" data-ok="Exacto. Mientras no vendas, la ganancia es solo 'sobre el papel' y no tributa. Por eso dejar correr una inversión buena también aplaza el pago de impuestos." data-no="La regla clave: solo tributas al REALIZAR (vender y cobrar). Una subida no vendida no paga nada aún. Y las inversiones van en la base del ahorro, no en la general."></div>
+    </div>
+  </div>
+</section>
+
+<!-- CAP F2 -->
+<section class="chapter" id="capF2">
+  <div class="wrap">
+    <div class="chapter-head"><span class="chapter-no">22</span><span class="eyebrow">Fondos</span></div>
+    <h2>Fondos indexados y activos: la joya del traspaso</h2>
+    <p class="sub">Los fondos de inversión tienen una ventaja fiscal que ningún otro producto de bolsa iguala en España.</p>
+
+    <p>Tanto los fondos indexados como los de gestión activa tributan igual: cuando <b>reembolsas</b> (vendes tus participaciones) con ganancia, esa ganancia va a la base del ahorro (19 %–28 %). Hasta ahí, normal. Pero tienen un truco legal buenísimo:</p>
+
+    <div class="concept">
+      <span class="c-word">Concepto clave · El traspaso</span>
+      <p>Puedes mover todo tu dinero de un fondo a otro (un <b>traspaso</b>) <b>sin pagar impuestos</b> por el camino. Hacienda no te cobra hasta que finalmente sacas el dinero a tu cuenta. Así el interés compuesto sigue trabajando sobre el total, sin frenazos.</p>
+    </div>
+
+    <div class="example">
+      <span class="e-tag">Ejemplo con números</span>
+      <h4>Cambiar de fondo sin pasar por caja</h4>
+      <table>
+        <tr><td>Tu fondo A ha ganado 5.000 €. Decides cambiarte al fondo B.</td><td>&nbsp;</td></tr>
+        <tr><td>Si fuera una acción o un ETF: pagarías ahora (21 % de 5.000)</td><td>−1.050 €</td></tr>
+        <tr><td>Con un traspaso de fondos: pagas ahora</td><td>0 €</td></tr>
+      </table>
+      <p class="e-note">Esos 1.050 € que NO pagas siguen invertidos y generando intereses. Repetido durante décadas, el diferir impuestos es una ventaja enorme. Por eso los fondos indexados son tan queridos para el largo plazo en España.</p>
+    </div>
+
+    <div class="quiz" data-answer="0">
+      <span class="q-tag">Prueba de comprensión</span>
+      <p class="q">Quieres cambiar tu dinero de un fondo indexado a otro. ¿Qué pasa con los impuestos?</p>
+      <div class="opts">
+        <button class="opt">Nada: el traspaso entre fondos no tributa, pagas solo cuando saques el dinero de verdad.</button>
+        <button class="opt">Pagas el 21 % de la ganancia en el momento del cambio.</button>
+        <button class="opt">Pagas un 45 %, como si fuera un sueldo.</button>
+      </div>
+      <div class="fb" data-ok="Correcto. El traspaso entre fondos difiere el impuesto: no pagas hasta el reembolso final. Es la gran ventaja fiscal de los fondos en España y potencia el interés compuesto." data-no="Los fondos son especiales: el traspaso de uno a otro NO tributa. Solo pagas cuando sacas el dinero definitivamente. (Un ETF sí pagaría en cada venta, como verás enseguida.)"></div>
+    </div>
+  </div>
+</section>
+
+<!-- CAP F3 -->
+<section class="chapter" id="capF3">
+  <div class="wrap">
+    <div class="chapter-head"><span class="chapter-no">23</span><span class="eyebrow">Cotizados</span></div>
+    <h2>ETFs y ETCs: plusvalía al vender</h2>
+    <p class="sub">Se parecen a los fondos, pero a efectos de impuestos se comportan como una acción cualquiera.</p>
+
+    <p>Aquí está la diferencia fiscal que apuntamos en el Cap. 14: como los <b>ETFs</b> cotizan en bolsa igual que las acciones, en España <b>no disfrutan del traspaso sin impuestos</b>. Cada vez que vendes un ETF con ganancia, tributas en ese momento (base del ahorro, 19 %–28 %). Los <b>ETCs</b> (oro y materias primas) funcionan igual: pagas por la ganancia al venderlos.</p>
+
+    <div class="concept">
+      <span class="c-word">Concepto clave · Ganancia patrimonial</span>
+      <p>Cuando vendes algo por más de lo que te costó, esa diferencia es una <b>ganancia patrimonial</b>, y va a la base del ahorro. Es lo que ocurre con ETFs, ETCs, acciones sueltas y cripto: se paga <b>en cada venta</b> con beneficio, sin el "colchón" del traspaso de los fondos.</p>
+    </div>
+
+    <div class="callout">
+      <h4>La consecuencia práctica</h4>
+      <p style="margin:0; color:var(--ink-soft);">Si tu plan es cambiar de estrategia varias veces a lo largo de los años, con fondos indexados aplazas impuestos en cada cambio; con ETFs, cada cambio "peaja". Para comprar y mantener a muy largo plazo la diferencia se nota menos, pero conviene tenerla clara.</p>
+    </div>
+
+    <div class="quiz" data-answer="2">
+      <span class="q-tag">Prueba de comprensión</span>
+      <p class="q">Fiscalmente, ¿en qué se diferencia vender un ETF de traspasar un fondo indexado?</p>
+      <div class="opts">
+        <button class="opt">En nada, los dos permiten cambiar sin pagar.</button>
+        <button class="opt">El ETF nunca paga impuestos.</button>
+        <button class="opt">Al vender un ETF con ganancia pagas en ese momento; el fondo permite traspasar sin tributar hasta el reembolso final.</button>
+      </div>
+      <div class="fb" data-ok="Eso es. El ETF tributa en cada venta con beneficio (como una acción); el fondo aplaza el pago con el traspaso. Misma familia, distinta fiscalidad." data-no="La clave es el traspaso: el fondo indexado permite cambiarse sin pagar, pero el ETF tributa en cada venta con ganancia, como una acción cualquiera."></div>
+    </div>
+  </div>
+</section>
+
+<!-- CAP F4 -->
+<section class="chapter" id="capF4">
+  <div class="wrap">
+    <div class="chapter-head"><span class="chapter-no">24</span><span class="eyebrow">Prestar y financiar</span></div>
+    <h2>Crowdlending y crowdfunding: intereses y dividendos</h2>
+    <p class="sub">Aquí no vendes nada con plusvalía: cobras intereses o repartos. Y eso tiene su propia etiqueta fiscal.</p>
+
+    <div class="concept">
+      <span class="c-word">Concepto clave · Rendimiento del capital mobiliario</span>
+      <p>Los <b>intereses</b> del crowdlending y los <b>dividendos/repartos</b> del crowdfunding son "rendimientos del capital mobiliario". Suena raro, pero solo significa: dinero que produce tu dinero sin vender nada. También van a la <b>base del ahorro</b> (19 %–28 %), y muchas plataformas te aplican una <b>retención</b> (te adelantan un 19 % a Hacienda).</p>
+    </div>
+
+    <p>Hay un detalle importante y a menudo doloroso con el crowdlending:</p>
+
+    <div class="callout warn">
+      <h4>Los impagos no se descuentan tan fácil</h4>
+      <p style="margin:0; color:var(--ink-soft);">Si un préstamo no se devuelve, esa pérdida <b>no siempre</b> se puede restar de tus ganancias de inmediato: Hacienda pone condiciones y plazos. Resultado: puedes acabar pagando impuestos por los intereses cobrados mientras cargas con préstamos impagados que tardas en poder deducir. Un motivo más para tomarse el riesgo en serio.</p>
+    </div>
+
+    <div class="example">
+      <span class="e-tag">Ejemplo con números</span>
+      <h4>Cobras 400 € de intereses en el año</h4>
+      <table>
+        <tr><td>Intereses cobrados (rendimiento capital mobiliario)</td><td>400 €</td></tr>
+        <tr><td>Impuesto en la base del ahorro (19 %)</td><td>−76 €</td></tr>
+        <tr><td>Te quedas con</td><td>324 €</td></tr>
+      </table>
+      <p class="e-note">La plataforma probablemente ya te retuvo ese 19 % y se lo adelantó a Hacienda. En la declaración se ajusta la cuenta final según tu tramo.</p>
+    </div>
+
+    <div class="quiz" data-answer="1">
+      <span class="q-tag">Prueba de comprensión</span>
+      <p class="q">Los intereses que cobras en una plataforma de crowdlending, ¿cómo tributan?</p>
+      <div class="opts">
+        <button class="opt">Como un sueldo, en la base general al 45 %.</button>
+        <button class="opt">Como rendimiento del capital mobiliario, en la base del ahorro (19 %–28 %), normalmente con una retención del 19 %.</button>
+        <button class="opt">No tributan nunca porque son intereses.</button>
+      </div>
+      <div class="fb" data-ok="Correcto. Intereses y dividendos son 'capital mobiliario' y van a la base del ahorro, con retención habitual del 19 %. Ojo con los impagos: no siempre se deducen al momento." data-no="No van con el sueldo ni están exentos: los intereses son rendimiento del capital mobiliario, tributan en la base del ahorro (19 %–28 %) y suelen llevar retención del 19 %."></div>
+    </div>
+  </div>
+</section>
+
+<!-- CAP F5 -->
+<section class="chapter" id="capF5">
+  <div class="wrap">
+    <div class="chapter-head"><span class="chapter-no">25</span><span class="eyebrow">El caso especial</span></div>
+    <h2>Inmobiliario: el alquiler va por otro cajón</h2>
+    <p class="sub">El ladrillo es el único de la lista que rompe la regla: el alquiler no va a la base del ahorro, sino a la general.</p>
+
+    <p>El inmobiliario tiene <b>dos momentos fiscales</b> distintos, y conviene no mezclarlos:</p>
+    <ul class="clean">
+      <li><b>Mientras alquilas:</b> la renta que cobras es "rendimiento del capital inmobiliario" y va a la <b>base general</b> (a tu tipo marginal, como el sueldo). La buena noticia: puedes <b>restar gastos</b> (IBI, comunidad, seguros, intereses de la hipoteca, reparaciones) y, si alquilas vivienda, aplicar una <b>reducción del 60 %</b> sobre el beneficio.</li>
+      <li><b>Cuando vendes el piso:</b> la ganancia (vendes por más de lo que compraste) es una ganancia patrimonial y va a la <b>base del ahorro</b> (19 %–28 %), como los demás activos.</li>
+    </ul>
+
+    <div class="example">
+      <span class="e-tag">Ejemplo con números</span>
+      <h4>Alquilas por 7.800 €/año</h4>
+      <table>
+        <tr><td>Renta anual cobrada</td><td>7.800 €</td></tr>
+        <tr><td>− Gastos deducibles (IBI, comunidad, seguro, reparaciones…)</td><td>−2.500 €</td></tr>
+        <tr><td>Beneficio</td><td>5.300 €</td></tr>
+        <tr><td>− Reducción del 60 % (alquiler de vivienda)</td><td>−3.180 €</td></tr>
+        <tr><td>Lo que tributa (en la base general)</td><td>2.120 €</td></tr>
+      </table>
+      <p class="e-note">Solo tributan 2.120 € de los 7.800 € cobrados, y a tu tipo marginal (si es el 30 %, unos 636 €). La reducción del 60 % hace el alquiler de vivienda fiscalmente atractivo. Ojo: esta reducción no aplica al alquiler turístico.</p>
+    </div>
+
+    <div class="quiz" data-answer="2">
+      <span class="q-tag">Prueba de comprensión</span>
+      <p class="q">¿Qué tiene de especial la fiscalidad del alquiler frente al resto de inversiones?</p>
+      <div class="opts">
+        <button class="opt">Que no paga ningún impuesto.</button>
+        <button class="opt">Que tributa igual que un fondo, en la base del ahorro.</button>
+        <button class="opt">Que va a la base general (a tu tipo marginal, como el sueldo), aunque puedes restar gastos y una reducción del 60 % si es vivienda.</button>
+      </div>
+      <div class="fb" data-ok="Eso es. El alquiler es la excepción: se suma a tus ingresos del trabajo en la base general. Los gastos y la reducción del 60 % (en vivienda) suavizan bastante el golpe. La venta del piso, en cambio, sí va a la base del ahorro." data-no="El alquiler es la rareza de la lista: va a la base GENERAL (tu tipo marginal), no a la del ahorro. Sí puedes restar gastos y, en vivienda, una reducción del 60 %."></div>
+    </div>
+  </div>
+</section>
+
+<!-- CAP F6 -->
+<section class="chapter" id="capF6">
+  <div class="wrap">
+    <div class="chapter-head"><span class="chapter-no">26</span><span class="eyebrow">Los dos extremos</span></div>
+    <h2>Private equity y cripto: plusvalías y permutas</h2>
+    <p class="sub">Uno es cosa de grandes inversores; la otra, de la calle. Fiscalmente comparten base, pero la cripto tiene una trampa muy suya.</p>
+
+    <p>El <b>private equity</b> es lo más sencillo de contar: cuando vendes tu participación en la empresa por más de lo que pagaste, es una ganancia patrimonial (base del ahorro, 19 %–28 %); si repartieran dividendos, son capital mobiliario (misma base). Nada raro salvo que, al ser tan ilíquido, ese "momento de vender" puede tardar años en llegar.</p>
+
+    <p>La <b>cripto</b> es donde más gente mete la pata, por una regla que sorprende:</p>
+
+    <div class="concept">
+      <span class="c-word">Concepto clave · Cambiar cripto por cripto ¡también tributa!</span>
+      <p>No hace falta pasar a euros para pagar impuestos. Si cambias una cripto por otra (por ejemplo, bitcoin por ether), Hacienda lo considera una <b>permuta</b>: si esa cripto valía más que cuando la compraste, tienes una ganancia patrimonial y <b>tributas ya</b>, aunque no hayas visto ni un euro.</p>
+    </div>
+
+    <div class="example">
+      <span class="e-tag">Ejemplo con números</span>
+      <h4>Cambias bitcoin por ether sin pasar a euros</h4>
+      <table>
+        <tr><td>Compraste bitcoin por</td><td>400 €</td></tr>
+        <tr><td>Ahora vale 1.000 € y lo cambias por ether. Ganancia</td><td>600 €</td></tr>
+        <tr><td>Impuesto (19 % de 600), aunque no hayas sacado euros</td><td>114 €</td></tr>
+      </table>
+      <p class="e-note">Además hay que <b>declarar</b> las operaciones con cripto, y existe un modelo específico (el 721) para las que se guardan en el extranjero por encima de cierto importe. Llevar un registro de cada compra y cambio es imprescindible.</p>
+    </div>
+
+    <div class="quiz" data-answer="0">
+      <span class="q-tag">Prueba de comprensión</span>
+      <p class="q">Cambias unas criptos por otras que han subido, sin convertirlas a euros. ¿Tributas?</p>
+      <div class="opts">
+        <button class="opt">Sí: cambiar una cripto por otra es una permuta y la ganancia tributa ya, aunque no hayas pasado a euros.</button>
+        <button class="opt">No, mientras no lo pases a euros no pasa nada.</button>
+        <button class="opt">Solo si lo gastas en una tienda.</button>
+      </div>
+      <div class="fb" data-ok="Correcto, y es el error más típico. Cripto por cripto = permuta = tributas por la ganancia en ese momento. Por eso hay que guardar registro de cada operación." data-no="Cuidado con este mito: no hace falta pasar a euros. Cambiar una cripto por otra es una permuta, y si has ganado, tributas ya. Es donde más gente se equivoca."></div>
+    </div>
+  </div>
+</section>
+
+<!-- Mapa fiscal -->
+<section class="chapter" id="mapafiscal">
+  <div class="wrap">
+    <div class="chapter-head"><span class="chapter-no">✦</span><span class="eyebrow">Visión de conjunto</span></div>
+    <h2>Fiscalidad de un vistazo</h2>
+    <p class="sub">Todo el módulo fiscal en una tabla. Fíjate en el patrón: casi todo va a la base del ahorro y se paga al vender; el alquiler es la gran excepción.</p>
+
+    <div class="compare-wrap">
+      <table class="compare">
+        <thead>
+          <tr><th>Activo</th><th>Tipo de renta</th><th>Cajón</th><th>¿Cuándo tributas?</th><th>Tipo aprox.</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Fondos indexados y activos</td><td>Ganancia patrimonial</td><td><span class="pill mid">Ahorro</span></td><td>Al reembolsar (traspaso NO tributa)</td><td>19–28 %</td></tr>
+          <tr><td>ETFs</td><td>Ganancia patrimonial</td><td><span class="pill mid">Ahorro</span></td><td>En cada venta con ganancia</td><td>19–28 %</td></tr>
+          <tr><td>ETCs (oro, materias primas)</td><td>Ganancia patrimonial</td><td><span class="pill mid">Ahorro</span></td><td>Al vender</td><td>19–28 %</td></tr>
+          <tr><td>Crowdlending</td><td>Intereses (cap. mobiliario)</td><td><span class="pill mid">Ahorro</span></td><td>Al cobrar intereses (con retención)</td><td>19–28 %</td></tr>
+          <tr><td>Crowdfunding inmobiliario</td><td>Intereses / dividendos / plusvalía</td><td><span class="pill mid">Ahorro</span></td><td>Al cobrar o al vender</td><td>19–28 %</td></tr>
+          <tr><td>Inmobiliario — alquiler</td><td>Cap. inmobiliario</td><td><span class="pill high">General</span></td><td>Cada año (con reducción 60 % vivienda)</td><td>Tipo marginal</td></tr>
+          <tr><td>Inmobiliario — venta</td><td>Ganancia patrimonial</td><td><span class="pill mid">Ahorro</span></td><td>Al vender el inmueble</td><td>19–28 %</td></tr>
+          <tr><td>Private equity</td><td>Plusvalía / dividendos</td><td><span class="pill mid">Ahorro</span></td><td>Al vender o cobrar reparto</td><td>19–28 %</td></tr>
+          <tr><td>Criptomonedas</td><td>Ganancia patrimonial</td><td><span class="pill mid">Ahorro</span></td><td>Al vender <b>o al permutar</b></td><td>19–28 %</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout warn">
+      <h4>Aviso fiscal importante</h4>
+      <p style="margin:0; color:var(--ink-soft);">Esta tabla es una simplificación <b>educativa</b> de la fiscalidad en España y los tipos son orientativos. Las leyes fiscales <b>cambian cada año</b>, hay matices (comunidades autónomas, situaciones personales, tipo de alquiler…) y esto no es asesoramiento fiscal. Antes de declarar de verdad, consultad la información oficial de Hacienda o con un asesor.</p>
+    </div>
+
+    <div class="note">
+      <span class="who">Regla que resume el módulo fiscal</span>
+      <p>Casi todo va al "cajón del ahorro" y se paga al vender; el alquiler es la excepción y los fondos, el atajo.</p>
+    </div>
+  </div>
+</section>
+
+</div><!-- /tab-inv -->
+
 <!-- Divulgadores -->
 <section class="chapter" id="divulgadores">
   <div class="wrap">
@@ -1655,6 +1982,39 @@
   Object.keys(ci).forEach(function (k) { ci[k].addEventListener('input', drawCompound); });
   window.addEventListener('resize', drawCompound);
   drawCompound();
+
+  /* ---- Pestañas (dos módulos) ---- */
+  var TAB_MAP = [{ btn: 'tabbtn-base', panel: 'tab-base' }, { btn: 'tabbtn-inv', panel: 'tab-inv' }];
+  function activateTab(panelId, doScroll) {
+    TAB_MAP.forEach(function (t) {
+      var b = document.getElementById(t.btn), p = document.getElementById(t.panel);
+      if (!b || !p) return;
+      var on = (t.panel === panelId);
+      b.setAttribute('aria-selected', on ? 'true' : 'false');
+      b.tabIndex = on ? 0 : -1;
+      p.hidden = !on;
+    });
+    if (panelId === 'tab-base') drawCompound();
+    if (doScroll) window.scrollTo(0, 0);
+  }
+  TAB_MAP.forEach(function (t) {
+    var b = document.getElementById(t.btn);
+    if (b) b.addEventListener('click', function () { activateTab(t.panel, true); });
+  });
+  // Enlaces del índice que apuntan a la otra pestaña: cambian de pestaña y bajan.
+  Array.prototype.slice.call(document.querySelectorAll('a[href^="#"]')).forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      var id = a.getAttribute('href').slice(1);
+      var el = document.getElementById(id);
+      if (!el || !el.closest) return;
+      var panel = el.closest('.tabpanel');
+      if (panel && panel.hidden) {
+        e.preventDefault();
+        activateTab(panel.id, false);
+        setTimeout(function () { el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 40);
+      }
+    });
+  });
 })();
 </script>
 </body>
