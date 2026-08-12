@@ -172,7 +172,9 @@
   .tab:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
   .tab .tab-k { color: var(--gold-strong); font-weight: 700; }
   .tabpanel[hidden] { display: none; }
-  @media (max-width: 420px) { .tab { font-size: .74rem; padding: 10px 8px; } }
+  .path-wrap { padding-top: 6px; }
+  @media (max-width: 560px) { .tab { font-size: .72rem; padding: 10px 6px; letter-spacing: 0; } .tabs-inner { gap: 6px; padding: 8px 14px; } }
+  @media (max-width: 380px) { .tab { font-size: .66rem; } }
 
   /* reading recommendations */
   .reads { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 16px 20px; margin: 24px 0; box-shadow: var(--shadow); }
@@ -294,6 +296,18 @@
     <h1>Aprende cómo funciona el <em>dinero</em>, de principio a fin.</h1>
     <p class="lede">Empezamos por lo más básico —qué es el dinero y por qué existe— y subimos escalón a escalón hasta saber invertir. Cada capítulo trae ejemplos con números y una pequeña prueba para comprobar que lo has entendido. No hace falta saber nada de antes.</p>
 
+  </div>
+</header>
+
+<div class="tabs" role="tablist" aria-label="Secciones de la guía">
+  <div class="tabs-inner">
+    <button class="tab" id="tabbtn-base" role="tab" aria-selected="true" aria-controls="tab-base"><span class="tab-k">1</span> · Módulos A·B·C</button>
+    <button class="tab" id="tabbtn-fase2" role="tab" aria-selected="false" aria-controls="tab-fase2" tabindex="-1"><span class="tab-k">2</span> · Fase 2</button>
+    <button class="tab" id="tabbtn-fiscal" role="tab" aria-selected="false" aria-controls="tab-fiscal" tabindex="-1"><span class="tab-k">3</span> · Módulo fiscal</button>
+  </div>
+</div>
+
+<div class="wrap path-wrap">
     <nav class="path" aria-label="Índice del curso">
       <h3>Tu ruta de aprendizaje</h3>
 
@@ -344,14 +358,6 @@
         <li><a href="#mapafiscal"><span class="pn">✦</span><span>Fiscalidad de un vistazo</span></a></li>
       </ol>
     </nav>
-  </div>
-</header>
-
-<div class="tabs" role="tablist" aria-label="Secciones de la guía">
-  <div class="tabs-inner">
-    <button class="tab" id="tabbtn-base" role="tab" aria-selected="true" aria-controls="tab-base"><span class="tab-k">1</span> · Curso base</button>
-    <button class="tab" id="tabbtn-inv" role="tab" aria-selected="false" aria-controls="tab-inv" tabindex="-1"><span class="tab-k">2</span> · Inversiones y fiscalidad</button>
-  </div>
 </div>
 
 <main>
@@ -997,7 +1003,7 @@
 
 </div><!-- /tab-base -->
 
-<div id="tab-inv" class="tabpanel" role="tabpanel" aria-labelledby="tabbtn-inv" hidden>
+<div id="tab-fase2" class="tabpanel" role="tabpanel" aria-labelledby="tabbtn-fase2" hidden>
 
 <!-- ================= FASE 2 ================= -->
 <div class="module"><div class="wrap">
@@ -1466,6 +1472,10 @@
   </div>
 </section>
 
+</div><!-- /tab-fase2 -->
+
+<div id="tab-fiscal" class="tabpanel" role="tabpanel" aria-labelledby="tabbtn-fiscal" hidden>
+
 <!-- ================= MÓDULO FISCAL ================= -->
 <div class="module"><div class="wrap">
   <div class="m-eye">Módulo fiscal · Hacienda también invierte contigo</div>
@@ -1756,7 +1766,7 @@
   </div>
 </section>
 
-</div><!-- /tab-inv -->
+</div><!-- /tab-fiscal -->
 
 <!-- Divulgadores -->
 <section class="chapter" id="divulgadores">
@@ -1984,7 +1994,7 @@
   drawCompound();
 
   /* ---- Pestañas (dos módulos) ---- */
-  var TAB_MAP = [{ btn: 'tabbtn-base', panel: 'tab-base' }, { btn: 'tabbtn-inv', panel: 'tab-inv' }];
+  var TAB_MAP = [{ btn: 'tabbtn-base', panel: 'tab-base' }, { btn: 'tabbtn-fase2', panel: 'tab-fase2' }, { btn: 'tabbtn-fiscal', panel: 'tab-fiscal' }];
   function activateTab(panelId, doScroll) {
     TAB_MAP.forEach(function (t) {
       var b = document.getElementById(t.btn), p = document.getElementById(t.panel);
