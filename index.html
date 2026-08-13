@@ -296,7 +296,7 @@
   <div class="wrap">
     <div class="eyebrow kicker">Curso paso a paso · Desde cero · Sin conocimientos previos</div>
     <h1>Aprende cómo funciona el <em>dinero</em>, de principio a fin.</h1>
-    <p class="lede">Empezamos por lo más básico —qué es el dinero y por qué existe— y subimos escalón a escalón hasta saber invertir. Cada capítulo trae ejemplos con números y una pequeña prueba para comprobar que lo has entendido. No hace falta saber nada de antes.</p>
+    <p class="lede" id="lede">Empezamos por lo más básico —qué es el dinero y por qué existe— y subimos escalón a escalón hasta saber invertir. Cada capítulo trae ejemplos con números y una pequeña prueba para comprobar que lo has entendido. No hace falta saber nada de antes.</p>
 
   </div>
 </header>
@@ -2011,6 +2011,12 @@
   /* ---- Pestañas (tres módulos) ---- */
   var TAB_MAP = [{ btn: 'tabbtn-base', panel: 'tab-base' }, { btn: 'tabbtn-fase2', panel: 'tab-fase2' }, { btn: 'tabbtn-fiscal', panel: 'tab-fiscal' }];
   var pathGroups = Array.prototype.slice.call(document.querySelectorAll('.path-group'));
+  var ledeEl = document.getElementById('lede');
+  var LEDES = {
+    'tab-base': 'Empezamos por lo más básico —qué es el dinero y por qué existe— y subimos escalón a escalón hasta saber invertir. Cada capítulo trae ejemplos con números y una pequeña prueba para comprobar que lo has entendido. No hace falta saber nada de antes.',
+    'tab-fase2': 'Ya tienes la base. Ahora abrimos el capó de cada producto de inversión —fondos indexados y activos, ETFs, ETCs, crowdlending, inmobiliario, private equity y cripto—: cómo funcionan por dentro, sus riesgos reales, ejemplos con números y libros para seguir aprendiendo.',
+    'tab-fiscal': 'Cuando ganas dinero invirtiendo, una parte va para Hacienda. Aquí ves cuánto y cuándo pagas por cada activo del módulo anterior, con las reglas clave de la fiscalidad en España explicadas con ejemplos. Material educativo y orientativo, no asesoramiento.'
+  };
   function activateTab(panelId, doScroll) {
     TAB_MAP.forEach(function (t) {
       var b = document.getElementById(t.btn), p = document.getElementById(t.panel);
@@ -2022,6 +2028,8 @@
     });
     // El índice "Tu ruta" muestra solo el grupo del módulo activo.
     pathGroups.forEach(function (g) { g.hidden = (g.getAttribute('data-tab') !== panelId); });
+    // El subtítulo del hero se adapta al módulo activo.
+    if (ledeEl && LEDES[panelId]) ledeEl.textContent = LEDES[panelId];
     if (panelId === 'tab-base') drawCompound();
     updateProgressUI();
     if (doScroll) window.scrollTo(0, 0);
