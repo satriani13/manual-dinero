@@ -84,6 +84,8 @@
   .path { margin: 34px 0 0; }
   .path h3 { font-size: 1.05rem; margin: 0 0 14px; }
   .path-mod { font-family: var(--font-mono); font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; color: var(--teal); margin: 18px 0 8px; }
+  .path-group[hidden] { display: none; }
+  .path-group > .path-mod:first-child { margin-top: 4px; }
   .path ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
   .path li a { display: flex; gap: 12px; align-items: baseline; text-decoration: none; color: var(--ink); padding: 7px 0; border-bottom: 1px dashed var(--line); }
   .path li a:hover { color: var(--gold-strong); }
@@ -302,7 +304,7 @@
 <div class="tabs" role="tablist" aria-label="Secciones de la guía">
   <div class="tabs-inner">
     <button class="tab" id="tabbtn-base" role="tab" aria-selected="true" aria-controls="tab-base"><span class="tab-k">1</span> · Módulos A·B·C</button>
-    <button class="tab" id="tabbtn-fase2" role="tab" aria-selected="false" aria-controls="tab-fase2" tabindex="-1"><span class="tab-k">2</span> · Fase 2</button>
+    <button class="tab" id="tabbtn-fase2" role="tab" aria-selected="false" aria-controls="tab-fase2" tabindex="-1"><span class="tab-k">2</span> · Módulo Inversiones</button>
     <button class="tab" id="tabbtn-fiscal" role="tab" aria-selected="false" aria-controls="tab-fiscal" tabindex="-1"><span class="tab-k">3</span> · Módulo fiscal</button>
   </div>
 </div>
@@ -311,6 +313,7 @@
     <nav class="path" aria-label="Índice del curso">
       <h3>Tu ruta de aprendizaje</h3>
 
+      <div class="path-group" data-tab="tab-base">
       <div class="path-mod">Módulo A · Entender el dinero</div>
       <ol>
         <li><a href="#cap1"><span class="pn">01</span><span>Qué es el dinero y por qué existe</span></a></li>
@@ -333,8 +336,10 @@
         <li><a href="#cap10"><span class="pn">10</span><span>El menú de inversiones: bolsa, inmobiliario, cripto</span></a></li>
         <li><a href="#cap11"><span class="pn">11</span><span>Tu cabeza: el factor que más importa</span></a></li>
       </ol>
+      </div>
 
-      <div class="path-mod">Fase 2 · Profundiza en las inversiones</div>
+      <div class="path-group" data-tab="tab-fase2" hidden>
+      <div class="path-mod">Módulo Inversiones · Profundiza en las inversiones</div>
       <ol>
         <li><a href="#cap12"><span class="pn">12</span><span>Fondos indexados a fondo (y su ventaja fiscal)</span></a></li>
         <li><a href="#cap13"><span class="pn">13</span><span>Fondos de gestión activa y la trampa de las comisiones</span></a></li>
@@ -346,7 +351,9 @@
         <li><a href="#cap19"><span class="pn">19</span><span>Private equity y capital riesgo</span></a></li>
         <li><a href="#cap20"><span class="pn">20</span><span>Cripto a fondo: tecnología, volatilidad y custodia</span></a></li>
       </ol>
+      </div>
 
+      <div class="path-group" data-tab="tab-fiscal" hidden>
       <div class="path-mod">Módulo fiscal · Los impuestos de cada activo</div>
       <ol>
         <li><a href="#capF1"><span class="pn">21</span><span>Cómo se pagan impuestos por invertir</span></a></li>
@@ -357,6 +364,7 @@
         <li><a href="#capF6"><span class="pn">26</span><span>Private equity y cripto: plusvalías y permutas</span></a></li>
         <li><a href="#mapafiscal"><span class="pn">✦</span><span>Fiscalidad de un vistazo</span></a></li>
       </ol>
+      </div>
     </nav>
 </div>
 
@@ -1007,7 +1015,7 @@
 
 <!-- ================= FASE 2 ================= -->
 <div class="module"><div class="wrap">
-  <div class="m-eye">Fase 2 · Nivel avanzado</div>
+  <div class="m-eye">Módulo Inversiones · Nivel avanzado</div>
   <h2>Profundiza en las inversiones</h2>
   <p>Ya tienes la base. Aquí abrimos el capó de cada producto de inversión: cómo funciona por dentro, sus riesgos reales, ejemplos con números y libros para seguir. No hace falta invertir en todo esto: se trata de <b>entenderlo</b> para decidir con criterio.</p>
   <div class="m-line"></div>
@@ -1826,13 +1834,20 @@
   function loadFor(ns) { try { return JSON.parse(localStorage.getItem(KEY_PREFIX + ns) || '[]'); } catch (e) { return []; } }
   function persist() { if (!NS) return; try { localStorage.setItem(KEY_PREFIX + NS, JSON.stringify(keysArray())); } catch (e) {} }
 
+  // Cuenta las preguntas SOLO del módulo (pestaña) que está visible.
   function updateProgressUI() {
-    var n = 0;
-    quizzes.forEach(function (q) { if (q.dataset.solved === '1') n++; });
-    var pct = TOTAL ? Math.round(n / TOTAL * 100) : 0;
+    var activePanel = document.querySelector('.tabpanel:not([hidden])');
+    var list = Array.prototype.slice.call((activePanel || document).querySelectorAll('.quiz'));
+    var total = list.length, n = 0;
+    list.forEach(function (q) { if (q.dataset.solved === '1') n++; });
+    var pct = total ? Math.round(n / total * 100) : 0;
     if (qpFill) qpFill.style.width = pct + '%';
-    if (qpTxt) qpTxt.textContent = n + '/' + TOTAL;
-    if (qprog) { qprog.classList.toggle('done', TOTAL > 0 && n === TOTAL); qprog.setAttribute('aria-valuenow', String(n)); }
+    if (qpTxt) qpTxt.textContent = n + '/' + total;
+    if (qprog) {
+      qprog.classList.toggle('done', total > 0 && n === total);
+      qprog.setAttribute('aria-valuenow', String(n));
+      qprog.setAttribute('aria-valuemax', String(total));
+    }
   }
 
   function showSolved(q) {
@@ -1993,8 +2008,9 @@
   window.addEventListener('resize', drawCompound);
   drawCompound();
 
-  /* ---- Pestañas (dos módulos) ---- */
+  /* ---- Pestañas (tres módulos) ---- */
   var TAB_MAP = [{ btn: 'tabbtn-base', panel: 'tab-base' }, { btn: 'tabbtn-fase2', panel: 'tab-fase2' }, { btn: 'tabbtn-fiscal', panel: 'tab-fiscal' }];
+  var pathGroups = Array.prototype.slice.call(document.querySelectorAll('.path-group'));
   function activateTab(panelId, doScroll) {
     TAB_MAP.forEach(function (t) {
       var b = document.getElementById(t.btn), p = document.getElementById(t.panel);
@@ -2004,7 +2020,10 @@
       b.tabIndex = on ? 0 : -1;
       p.hidden = !on;
     });
+    // El índice "Tu ruta" muestra solo el grupo del módulo activo.
+    pathGroups.forEach(function (g) { g.hidden = (g.getAttribute('data-tab') !== panelId); });
     if (panelId === 'tab-base') drawCompound();
+    updateProgressUI();
     if (doScroll) window.scrollTo(0, 0);
   }
   TAB_MAP.forEach(function (t) {
