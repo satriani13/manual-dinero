@@ -175,6 +175,17 @@
   .tab .tab-k { color: var(--gold-strong); font-weight: 700; }
   .tabpanel[hidden] { display: none; }
   .path-wrap { padding-top: 6px; }
+
+  /* Enlace a la versión para niños */
+  .kids-cta { max-width: var(--maxw); margin: 16px auto 0; padding: 0 22px; }
+  .kids-cta a { display: flex; align-items: center; gap: 13px; text-decoration: none; color: #2a2140; border-radius: 16px; padding: 13px 16px; background: linear-gradient(135deg, #FFD36B, #FF9ECb 58%, #9A86FF); box-shadow: var(--shadow); transition: transform .14s; }
+  .kids-cta a:hover { transform: translateY(-2px); }
+  .kids-cta a:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+  .kids-cta .emoji { font-size: 1.7rem; line-height: 1; flex: none; }
+  .kids-cta .t { flex: 1; min-width: 0; }
+  .kids-cta .t b { display: block; font-family: var(--font-display); font-size: 1.04rem; }
+  .kids-cta .t span { font-size: .85rem; opacity: .9; }
+  .kids-cta .arrow { font-weight: 800; font-size: 1.2rem; flex: none; }
   @media (max-width: 560px) { .tab { font-size: .72rem; padding: 10px 6px; letter-spacing: 0; } .tabs-inner { gap: 6px; padding: 8px 14px; } }
   @media (max-width: 380px) { .tab { font-size: .66rem; } }
 
@@ -300,6 +311,14 @@
 
   </div>
 </header>
+
+<div class="kids-cta">
+  <a href="ninos.html">
+    <span class="emoji">🧒</span>
+    <span class="t"><b>¿Para los más peques? (9–11 años)</b><span>Abre «La Aventura del Dinero»: 4 historias interactivas con Monedita</span></span>
+    <span class="arrow">→</span>
+  </a>
+</div>
 
 <div class="tabs" role="tablist" aria-label="Secciones de la guía">
   <div class="tabs-inner">
