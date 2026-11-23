@@ -26,7 +26,7 @@ Curso paso a paso organizado en **3 pestañas**, cada una con su propio índice,
 
 ## La Aventura del Dinero (`ninos.html`)
 
-Versión para **niños (9–11 años)**, pensada como un cuento interactivo guiado por **Monedita** (una moneda con cara). Cuatro historias con personajes SVG, mini-juegos táctiles, confeti y sonidos opcionales:
+Versión para **niños (9–11 años)**, pensada como un cuento interactivo guiado por **Monedita** (una moneda con brazos y piernas que saluda). Personajes ilustrados en SVG con vida propia (parpadean, respiran, saludan, la coleta se balancea, el zapatero martillea, el abuelo habla) y escenarios animados (mercado, cuarto, calle con carrito de helados, jardín y dormitorio de noche, con nubes, pájaros, mariposas, flores y sol en movimiento). Los mini-juegos usan animaciones reales: objetos que vuelan en arco (Web Animations API), la hucha que se zarandea y engorda, la regadera que se inclina y el árbol que crece con rebote, y un efecto sepia de "foto antigua" en la máquina del tiempo. Cuatro historias:
 
 1. **¿Qué es el dinero?** — el trueque (Nina quiere zapatos, el zapatero quiere pescado) y la invención de la moneda.
 2. **Ganar, gastar y guardar** — reparte 5 monedas entre "gastar" y "guardar" (la hucha).
@@ -41,6 +41,7 @@ Estático servido por nginx en el VPS (patrón pelusa/escata), registrado en el 
 
 ## Changelog
 
+- **Versión para niños, ilustraciones nuevas:** personajes y escenarios rediseñados con animaciones continuas y mini-juegos con movimiento (vuelos en arco, hucha que engorda, árbol que crece, sepia en la máquina del tiempo).
 - **Versión para niños** (`ninos.html`): "La Aventura del Dinero", 4 historias interactivas (9–11 años), enlazada desde el manual.
 - Subtítulo del hero adaptado a cada módulo; índice y contador de progreso filtrados por pestaña; 2ª pestaña renombrada a "Módulo Inversiones".
 - Reorganización en 3 pestañas (Módulos A·B·C / Inversiones / Fiscal).
